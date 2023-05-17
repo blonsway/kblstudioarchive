@@ -11,9 +11,14 @@
 
 	<script type="text/javascript">
 		
+
+
 		d3.json("https://archive.kblstudio.com/wp-json/wp/v2/world-event", 
 			function (data) {
 				console.log(data);
+				var timeScaleYears = d3.time.scale()
+					.domain(data['toolset-meta']['world-event-fields'].year.raw)
+					.range([0,10]);
 				d3.selectAll("p")
 				.data(data)
 				.enter()
