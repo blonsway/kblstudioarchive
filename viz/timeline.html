@@ -53,8 +53,7 @@
 				.range([100,svgWidth-100])
 				.nice();
 
-			var xAxis = d3.axisBottom()
-				.scale(timeScaleYears)
+			var xAxis = d3.axisBottom(timeScaleYears)
 				.ticks();
 
 		
