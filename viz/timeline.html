@@ -13,9 +13,10 @@
 		
 		d3.json("https://archive.kblstudio.com/wp-json/wp/v2/world-event?per_page=1", 
 			function (data) {
+				console.log(data);
 				d3.select("#data-placeholder")
 				.data(data)
-				.text(function (d) {
+				.text(function (d, i) {
 					return d;
 				}); 
 			});
