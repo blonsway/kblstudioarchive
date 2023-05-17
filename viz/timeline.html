@@ -30,12 +30,13 @@
 			var sortedData = data.slice().sort((a,b) => d3.ascending(a['toolset-meta']['world-event-fields'].year.raw, b['toolset-meta']['world-event-fields'].year.raw));			
 			console.log(sortedData);
 			d3.select("#placeholder")
+				.data(sortedData)
 				.selectAll("div")
 				.enter()
 				.append("div")
 				.attr("width","300px")
 				.attr("background-color","#bbb")
-				.text (sortedData['toolset-meta']['world-event-fields'].year.raw);
+				.text(sortedData['toolset-meta']['world-event-fields'].year.raw);
 
 			var timeScaleYears = d3.scaleTime()
 				.domain([1000,2000])
