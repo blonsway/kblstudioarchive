@@ -39,8 +39,11 @@
 				.text( function (d) {return d['toolset-meta']['world-event-fields'].year.raw}); 
 
 			var timeScaleYears = d3.scaleTime()
-				.domain([1000,2000])
+				.domain([sortedData[0]['toolset-meta']['world-event-fields'].year.raw],[sortedData[1]['toolset-meta']['world-event-fields'].year.raw])
 				.range([0,10]);
+
+			var ticks = timeScaleYears.ticks();
+			console.log (ticks);
 		}
 
 
