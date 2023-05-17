@@ -20,16 +20,7 @@
 			.attr("height", svgHeight); 
 
 		d3.json("https://archive.kblstudio.com/wp-json/wp/v2/world-event", getYears);
-			// function (data) {
 
-			// 	d3.selectAll("p")
-			// 	.data(data)
-			// 	.enter()
-			// 	.append("p")
-			// 	.text(function (d) {
-			// 		return d['toolset-meta']['world-event-fields'].year.raw;
-			// 	}); 
-			// });
 
 		function getYears (data) {
 
@@ -47,6 +38,7 @@
 
 			console.log([sortedData[0]['toolset-meta']['world-event-fields'].year.raw]);
 			console.log([sortedData[1]['toolset-meta']['world-event-fields'].year.raw]);
+			console.log([sortedData[0].title.rendered]);
 
 			var timeScaleYears = d3.scaleTime()
 				.domain([[sortedData[0]['toolset-meta']['world-event-fields'].year.raw],[sortedData[1]['toolset-meta']['world-event-fields'].year.raw]])
@@ -66,7 +58,7 @@
 					.attr("cx", function(d) {return timeScaleYears(d['toolset-meta']['world-event-fields'].year.raw);})
 					.attr("cy", 100)
 					.attr("r", 5);
-					
+
 			timelinesvg.selectAll("points")
 				.data(sortedData)
 				.enter()
