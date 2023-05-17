@@ -66,7 +66,7 @@
 					.attr("x", function(d) {return timeScaleYears(d['toolset-meta']['world-event-fields'].year.raw);})
 					.attr("y", 110)
 					.attr("dy", ".3em")
-					.text(function(d) {return timeScaleYears(d.title.rendered);})
+					.text(function(d) {return (d.title.rendered);})
 				;
 
 			timelinesvg.append("g")
