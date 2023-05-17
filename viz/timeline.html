@@ -60,7 +60,7 @@
 			timelinesvg.append("g")
 				.call(xAxis);
 
-			svg.selectAll("points")
+			timelinesvg.selectAll("points")
 				.data(sortedData)
 				.enter()
 				.append("circle")
