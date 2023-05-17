@@ -34,8 +34,8 @@
 				.data(sortedData)
 				.enter()
 				.append("div")
-				.attr("width","300px")
-				.attr("background-color","#bbb")
+				.style("width","300px")
+				.style("background-color","#bbb")
 				.text( function (d) {return d['toolset-meta']['world-event-fields'].year.raw}); 
 
 			var timeScaleYears = d3.scaleTime()
