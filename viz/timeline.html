@@ -7,14 +7,14 @@
 	<h1>This is a timeline.</h1>
 
 
-	<p id="data-placeholder"></p>
+	<p class="yearText" id="data-placeholder"></p>
 
 	<script type="text/javascript">
 		
 		d3.json("https://archive.kblstudio.com/wp-json/wp/v2/world-event?per_page=1", 
 			function (data) {
 				console.log(data);
-				d3.select("#data-placeholder")
+				d3.selectall("p")
 				.data(data)
 				.enter()
 				.append("p")
