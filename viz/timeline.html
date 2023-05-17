@@ -50,16 +50,25 @@
 
 			var timeScaleYears = d3.scaleTime()
 				.domain([[sortedData[0]['toolset-meta']['world-event-fields'].year.raw],[sortedData[1]['toolset-meta']['world-event-fields'].year.raw]])
-				.range([100,svgWidth-100])
+				.range([0,svgWidth])
 				.nice();
 
 			var xAxis = d3.axisBottom(timeScaleYears)
 				.ticks(16)
 				.tickFormat(d3.format("d"));
-
 		
 			timelinesvg.append("g")
 				.call(xAxis);
+
+			svg.selectAll("points")
+				.data(sortedData)
+				.enter()
+				.append("circle")
+					.attr("fill","#frb")
+					.attr("stroke", "none")
+					.attr("cx", function(d) {return x(d['toolset-meta']['world-event-fields'].year.raw)})
+					.attr("cy", 100)
+					.attr("r", 3);
 		}
 
 
