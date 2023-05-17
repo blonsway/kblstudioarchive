@@ -26,7 +26,7 @@
 			// });
 
 		function getYears (data) {
-			console.log(data);
+			console.log(data['toolset-meta']['world-event-fields'].year.raw.sort(d3.ascending));
 			d3.select("#placeholder")
 			.text (data[0]['toolset-meta']['world-event-fields'].year.raw);
 
