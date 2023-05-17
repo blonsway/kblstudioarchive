@@ -13,7 +13,7 @@
 		
 
 
-		d3.json("https://archive.kblstudio.com/wp-json/wp/v2/world-event", getYears());
+		d3.json("https://archive.kblstudio.com/wp-json/wp/v2/world-event", getYears(data));
 			// function (data) {
 
 			// 	d3.selectAll("p")
@@ -25,13 +25,13 @@
 			// 	}); 
 			// });
 
-		function getYears () {
+		function getYears (data) {
 			d3.select("#placeholder")
 			.text ("hi there");
 
-				// var timeScaleYears = d3.time.scale()
-				// 	.domain(data['toolset-meta']['world-event-fields'].year.raw)
-				// 	.range([0,10]);
+			var timeScaleYears = d3.time.scale()
+				.domain([1000,2000])
+				.range([0,10]);
 		}
 
 
