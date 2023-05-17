@@ -28,7 +28,7 @@
 		function getYears (data) {
 			console.log(data);
 			d3.select("#placeholder")
-			.text (d['toolset-meta']['world-event-fields'].year.raw);
+			.text (data['toolset-meta']['world-event-fields'].year.raw);
 
 			var timeScaleYears = d3.time.scale()
 				.domain([1000,2000])
