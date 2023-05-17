@@ -16,8 +16,8 @@
 				console.log(data);
 				d3.select("#data-placeholder")
 				.data(data)
-				.text(function (d, i) {
-					return d;
+				.text(function (d) {
+					return d[0];
 				}); 
 			});
 
