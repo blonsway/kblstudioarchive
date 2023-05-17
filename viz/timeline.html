@@ -14,6 +14,9 @@
 		var svgWidth = 800;
 		var svgHeight = 200;
 
+		var startYear = 1990;
+		var endYear = 2023;
+
 		var timelinesvg = d3.select("body")
 			.append("svg")
 			.attr("width", svgWidth)
@@ -24,29 +27,28 @@
 
 		function getYears (data) {
 
+			//sort post array on year
 			var sortedData = data.slice().sort((a,b) => d3.ascending(a['toolset-meta']['world-event-fields'].year.raw, b['toolset-meta']['world-event-fields'].year.raw));			
 			
-			d3.select("#placeholder")
-				.selectAll("div")
-				.data(sortedData)
-				.enter()
-				.append("div")
-				.style("width","300px")
-				.style("margin","20px")
-				.style("background-color","#bbb")
-				.text( function (d) {return d['toolset-meta']['world-event-fields'].year.raw}); 
+			// d3.select("#placeholder")
+			// 	.selectAll("div")
+			// 	.data(sortedData)
+			// 	.enter()
+			// 	.append("div")
+			// 	.style("width","300px")
+			// 	.style("margin","20px")
+			// 	.style("background-color","#bbb")
+			// 	.text( function (d) {return d['toolset-meta']['world-event-fields'].year.raw}); 
 
-			console.log([sortedData[0]['toolset-meta']['world-event-fields'].year.raw]);
-			console.log([sortedData[1]['toolset-meta']['world-event-fields'].year.raw]);
-			console.log([sortedData[0].title.rendered]);
-
+			// create scale for years based on start year and end year
 			var timeScaleYears = d3.scaleTime()
-				.domain([[sortedData[0]['toolset-meta']['world-event-fields'].year.raw],[sortedData[1]['toolset-meta']['world-event-fields'].year.raw]])
+				.domain([startYear, endYear])
 				.range([0,svgWidth])
 				.nice();
 
+			//create x axis
 			var xAxis = d3.axisBottom(timeScaleYears)
-				.ticks(16)
+				.ticks(endYear-startYear)
 				.tickFormat(d3.format("d"));
 		
 			timelinesvg.selectAll("points")
@@ -70,6 +72,7 @@
 				;
 
 			timelinesvg.append("g")
+				.attr("transform", "translate(0,svgHeight-20)")
 				.call(xAxis);
 
 
