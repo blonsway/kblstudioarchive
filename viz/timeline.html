@@ -54,10 +54,10 @@
 				.nice();
 
 			var xAxis = d3.axisBottom()
-				.scale(timeScaleYears);
+				.scale(timeScaleYears)
+				.ticks();
 
-			var ticks = timeScaleYears.ticks();
-			
+		
 			timelinesvg.append("g")
 				.call(xAxis);
 		}
