@@ -13,7 +13,7 @@
 		
 
 
-		d3.json("https://archive.kblstudio.com/wp-json/wp/v2/world-event", getYears());
+		d3.json("https://archive.kblstudio.com/wp-json/wp/v2/world-event", getYears;
 			// function (data) {
 
 			// 	d3.selectAll("p")
@@ -28,7 +28,7 @@
 		function getYears (data) {
 			console.log(data);
 			d3.select("#placeholder")
-			.text (data['toolset-meta']['world-event-fields'].year.raw);
+			.text ("hi");
 
 			var timeScaleYears = d3.time.scale()
 				.domain([1000,2000])
