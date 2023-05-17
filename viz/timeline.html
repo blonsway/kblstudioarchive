@@ -34,7 +34,7 @@
 		function getYears (data) {
 
 			var sortedData = data.slice().sort((a,b) => d3.ascending(a['toolset-meta']['world-event-fields'].year.raw, b['toolset-meta']['world-event-fields'].year.raw));			
-			console.log(sortedData);
+			
 			d3.select("#placeholder")
 				.selectAll("div")
 				.data(sortedData)
@@ -54,7 +54,8 @@
 				.nice();
 
 			var xAxis = d3.axisBottom(timeScaleYears)
-				.ticks(17);
+				.ticks(16)
+				.tikFormat(d3.format("d"));
 
 		
 			timelinesvg.append("g")
