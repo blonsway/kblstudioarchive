@@ -26,7 +26,9 @@
 			// });
 
 		function getYears (data) {
-			console.log(data['toolset-meta']['world-event-fields'].year.raw.sort(d3.ascending));
+
+			var sortedData = data.slice().sort((a,b) => d3.ascending(a['toolset-meta']['world-event-fields'].year.raw, b['toolset-meta']['world-event-fields'].year.raw));			
+			console.log(sortedData);
 			d3.select("#placeholder")
 			.text (data[0]['toolset-meta']['world-event-fields'].year.raw);
 
