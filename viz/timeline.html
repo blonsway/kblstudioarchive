@@ -16,6 +16,8 @@
 				console.log(data);
 				d3.select("#data-placeholder")
 				.data(data)
+				.enter()
+				.append("p")
 				.text(function (d) {
 					return d['toolset-meta']['world-event-fields'].year.raw;
 				}); 
