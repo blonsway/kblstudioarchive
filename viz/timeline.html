@@ -65,9 +65,13 @@
 					.attr("stroke", "none")
 					.attr("cx", function(d) {return timeScaleYears(d['toolset-meta']['world-event-fields'].year.raw);})
 					.attr("cy", 100)
-					.attr("r", 5)
+					.attr("r", 5);
+					
+			timelinesvg.selectAll("points")
+				.data(sortedData)
+				.enter()
 				.append("text")
-					.attr("x", function(d) {return timeScaleYears(d['toolset-meta']['world-event-fields'].year.raw) + 10;})
+					.attr("x", function(d) {return timeScaleYears(d['toolset-meta']['world-event-fields'].year.raw);})
 					.attr("y", 110)
 					.attr("dy", ".3em")
 					.text(function(d) {return timeScaleYears(d.title.rendered);})
