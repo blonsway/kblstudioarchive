@@ -35,6 +35,7 @@
 				.enter()
 				.append("div")
 				.style("width","300px")
+				.style("margin","20px")
 				.style("background-color","#bbb")
 				.text( function (d) {return d['toolset-meta']['world-event-fields'].year.raw}); 
 
@@ -43,7 +44,7 @@
 				.range([0,10]);
 
 			var ticks = timeScaleYears.ticks();
-			console.log (ticks);
+			console.log (timeScaleYears);
 		}
 
 
