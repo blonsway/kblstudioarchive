@@ -64,9 +64,9 @@
 				.data(sortedData)
 				.enter()
 				.append("circle")
-					.attr("fill","#frb")
+					.attr("fill","#fc9")
 					.attr("stroke", "none")
-					.attr("cx", function(d) {return d['toolset-meta']['world-event-fields'].year.raw})
+					.attr("cx", function(d) {return timeScaleYears(d['toolset-meta']['world-event-fields'].year.raw);})
 					.attr("cy", 100)
 					.attr("r", 3);
 		}
