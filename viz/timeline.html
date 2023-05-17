@@ -15,7 +15,7 @@
 
 		d3.json("https://archive.kblstudio.com/wp-json/wp/v2/world-event", 
 			function (data) {
-				console.log(data['toolset-meta']['world-event-fields'].year.raw);
+				function (d) { console.log(d['toolset-meta']['world-event-fields'].year.raw); };
 				// var timeScaleYears = d3.time.scale()
 				// 	.domain(data['toolset-meta']['world-event-fields'].year.raw)
 				// 	.range([0,10]);
