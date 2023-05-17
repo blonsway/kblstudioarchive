@@ -17,7 +17,8 @@
 				d3.select("#data-placeholder")
 				.data(data)
 				.text(function (d) {
-					var fields=d['toolset.meta']['world-event-fields'];
+					var meta=d['toolset.meta'];
+					var fields=meta['world-event-fields'];
 					return fields.year.raw;
 				}); 
 			});
