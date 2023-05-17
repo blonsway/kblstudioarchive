@@ -50,8 +50,8 @@
 
 			var timeScaleYears = d3.scaleTime()
 				//.domain([sortedData[0]['toolset-meta']['world-event-fields'].year.raw],[sortedData[1]['toolset-meta']['world-event-fields'].year.raw])
-				.domain(0,100)
-				.range(0,1)
+				.domain([0,100])
+				.range([0,1])
 				.nice();
 
 			var xAxis = d3.axisBottom(timeScaleYears)
