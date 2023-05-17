@@ -57,18 +57,25 @@
 				.ticks(16)
 				.tickFormat(d3.format("d"));
 		
-			timelinesvg.append("g")
-				.call(xAxis);
-
 			timelinesvg.selectAll("points")
 				.data(sortedData)
 				.enter()
 				.append("circle")
-					.attr("fill","#fc9")
+					.attr("fill","#fc3")
 					.attr("stroke", "none")
 					.attr("cx", function(d) {return timeScaleYears(d['toolset-meta']['world-event-fields'].year.raw);})
 					.attr("cy", 100)
-					.attr("r", 3);
+					.attr("r", 5)
+				.append("text")
+					.attr("x", function(d) {return timeScaleYears(d['toolset-meta']['world-event-fields'].year.raw) + 10;})
+					.attr("y", 110)
+					.text(function(d) {return timeScaleYears(d.title.rendered);})
+				;
+
+			timelinesvg.append("g")
+				.call(xAxis);
+
+
 		}
 
 
