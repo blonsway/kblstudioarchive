@@ -14,7 +14,7 @@
 		d3.json("https://archive.kblstudio.com/wp-json/wp/v2/world-event?per_page=1", 
 			function (data) {
 				console.log(data);
-				d3.selectall("p")
+				d3.selectAll("p")
 				.data(data)
 				.enter()
 				.append("p")
