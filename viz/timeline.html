@@ -11,7 +11,13 @@
 
 	<script type="text/javascript">
 		
+		var svgWidth = 800;
+		var svgHeight = 200;
 
+		var timelinesvg = d3.select("body")
+			.append("svg")
+			.attr("width", svgWidth)
+			.attr("height", svgHeight); 
 
 		d3.json("https://archive.kblstudio.com/wp-json/wp/v2/world-event", getYears);
 			// function (data) {
@@ -41,10 +47,15 @@
 
 			var timeScaleYears = d3.scaleTime()
 				.domain([sortedData[0]['toolset-meta']['world-event-fields'].year.raw],[sortedData[1]['toolset-meta']['world-event-fields'].year.raw])
-				.range([0,10]);
+				.range([0,svgWidth]);
 
-			var ticks = timeScaleYears.ticks();
-			console.log (timeScaleYears);
+			var xAxis = d3.axisBottom()
+				.scale(timeScaleYears);
+
+			var ticks = timeScaleYears.ticks(10);
+			
+			timelinesvg.append("g")
+				.call(xAxis);
 		}
 
 
