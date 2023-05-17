@@ -4,14 +4,13 @@
 	<script src="https://d3js.org/d3.v4.min.js"></script>
 </head>
 <body>
-		<h1>This is a timeline.</h1>
+	<h1>This is a timeline.</h1>
+
+	<script type="text/javascript">
+		
+		d3.json("https://archive.kblstudio.com/wp-json/wp/v2/world-event?per_page=1", function (data) {console.log(data)});
 
 
+	</script>
 </body>
 </html>
-<script type="text/javascript">
-	
-	d3.json("https://archive.kblstudio.com/wp-json/wp/v2/world-event?per_page=1", function (data) {console.log(data)});
-
-
-</script>
