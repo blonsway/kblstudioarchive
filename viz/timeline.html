@@ -75,6 +75,8 @@
 				.attr("transform", "translate(0,"+(svgHeight-40)+")")
 				.call(xAxis)
 				.selectAll("text")
+				.style("text-anchor","end")
+				.attr("dx","-1em")
 				.attr("dy","1em")
 				.attr("transform","rotate(-90)");
 
