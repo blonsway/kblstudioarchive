@@ -11,8 +11,9 @@
 
 	<script type="text/javascript">
 		
-		var svgWidth = window.innerWidth;
+		var svgWidth = window.innerWidth-200;
 		var svgHeight = 200;
+		var svgPadding = 20;
 
 		var startYear = 1990;
 		var endYear = 2023;
@@ -44,7 +45,7 @@
 			// create scale for years based on start year and end year
 			var timeScaleYears = d3.scaleTime()
 				.domain([startYear, endYear])
-				.range([0,svgWidth])
+				.range([svgPadding,svgWidth-svgPadding])
 				.nice();
 
 			//create x axis
