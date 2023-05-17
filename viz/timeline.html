@@ -30,7 +30,7 @@
 			d3.select("#placeholder")
 			.text (data[0]['toolset-meta']['world-event-fields'].year.raw);
 
-			var timeScaleYears = d3.time.scale()
+			var timeScaleYears = d3.scaleTime()
 				.domain([1000,2000])
 				.range([0,10]);
 		}
