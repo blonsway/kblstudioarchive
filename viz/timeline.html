@@ -49,13 +49,13 @@
 
 			var timeScaleYears = d3.scaleTime()
 				.domain([sortedData[0]['toolset-meta']['world-event-fields'].year.raw],[sortedData[1]['toolset-meta']['world-event-fields'].year.raw])
-				.range([0,100])
+				.range([0,svgWidth])
 				.nice();
 
 			var xAxis = d3.axisBottom()
 				.scale(timeScaleYears);
 
-			var ticks = timeScaleYears.ticks(10);
+			var ticks = timeScaleYears.ticks();
 			
 			timelinesvg.append("g")
 				.call(xAxis);
