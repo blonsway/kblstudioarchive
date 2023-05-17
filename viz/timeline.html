@@ -6,7 +6,7 @@
 <body>
 	<h1>This is a timeline.</h1>
 
-
+	<p id="placeholder"></p>
 	
 
 	<script type="text/javascript">
@@ -26,11 +26,9 @@
 			// });
 
 		function getYears () {
-			d3.selectAll("p")
-			.enter()
-			.append("p")
+			d3.select("#placeholder")
 			.text ("hi there");
-			
+
 				// var timeScaleYears = d3.time.scale()
 				// 	.domain(data['toolset-meta']['world-event-fields'].year.raw)
 				// 	.range([0,10]);
