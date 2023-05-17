@@ -69,6 +69,7 @@
 				.append("text")
 					.attr("x", function(d) {return timeScaleYears(d['toolset-meta']['world-event-fields'].year.raw) + 10;})
 					.attr("y", 110)
+					.attr("dy", ".3em")
 					.text(function(d) {return timeScaleYears(d.title.rendered);})
 				;
 
