@@ -13,20 +13,28 @@
 		
 
 
-		d3.json("https://archive.kblstudio.com/wp-json/wp/v2/world-event", 
-			function (data) {
-				function (d) { console.log(d['toolset-meta']['world-event-fields'].year.raw); };
+		d3.json("https://archive.kblstudio.com/wp-json/wp/v2/world-event", getYears());
+			// function (data) {
+
+			// 	d3.selectAll("p")
+			// 	.data(data)
+			// 	.enter()
+			// 	.append("p")
+			// 	.text(function (d) {
+			// 		return d['toolset-meta']['world-event-fields'].year.raw;
+			// 	}); 
+			// });
+
+		function getYears () {
+			d3.selectAll("p")
+			.enter()
+			.append("p")
+			.text ("hi there");
+			
 				// var timeScaleYears = d3.time.scale()
 				// 	.domain(data['toolset-meta']['world-event-fields'].year.raw)
 				// 	.range([0,10]);
-				d3.selectAll("p")
-				.data(data)
-				.enter()
-				.append("p")
-				.text(function (d) {
-					return d['toolset-meta']['world-event-fields'].year.raw;
-				}); 
-			});
+		}
 
 
 	</script>
