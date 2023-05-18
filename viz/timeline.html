@@ -52,7 +52,16 @@
 			var xAxis = d3.axisBottom(timeScaleYears)
 				.ticks(endYear-startYear)
 				.tickFormat(d3.format("d"));
+
+			var vertDistribScale = d3.scale()
+				.domain([0,data.length])
+				.range([svgPadding,svgHeight-svgPadding])
+				.nice();
 		
+			var baseYpos = 50; //pixels above axis for first data point
+			var stackedItemYpos = baseYpos;
+
+
 			timelinesvg.selectAll("points")
 				.data(sortedData)
 				.enter()
@@ -60,7 +69,7 @@
 					.attr("fill","#fc3")
 					.attr("stroke", "none")
 					.attr("cx", function(d) {return timeScaleYears(d['toolset-meta']['world-event-fields'].year.raw);})
-					.attr("cy", 100)
+					.attr("cy", stackedItemYpos+=10)
 					.attr("r", 5);
 
 			timelinesvg.selectAll("points")
@@ -68,10 +77,10 @@
 				.enter()
 				.append("text")
 					.attr("x", function(d) {return timeScaleYears(d['toolset-meta']['world-event-fields'].year.raw);})
-					.attr("y", 110)
+					.attr("y", stackedItemYpos+10)
 					.attr("dy", ".3em")
-					.text(function(d) {return (d.title.rendered);})
-				;
+					.text(function(d) {return (d.title.rendered);});
+
 
 			timelinesvg.append("g")
 				.attr("transform", "translate(0,"+(svgHeight-40)+")")
