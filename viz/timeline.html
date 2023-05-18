@@ -132,10 +132,10 @@
 				.data(sortedData)
 				.enter()
 				.append("circle")
-					.attr("fill","#fc3")
+					.attr("fill","#ffc")
 					.attr("stroke", "none")
 					.attr("cx", function(d) {return timeScaleYears(d['toolset-meta']['world-event-fields'].year.raw);})
-					.attr("cy", function(d,i) {return svgHeight-vertDistribScale(i)+baseYpos;})
+					.attr("cy", function(d,i) {return svgHeight-vertDistribScale(i)-baseYpos;})
 					.attr("r", 5);
 
 
@@ -146,7 +146,7 @@
 					.attr("xlink:href", function(d){ return d.link })
 				.append("text")
 					.attr("x", function(d) {return timeScaleYears(d['toolset-meta']['world-event-fields'].year.raw);})
-					.attr("y", function(d,i) {return svgHeight-vertDistribScale(i)+baseYpos+10;})
+					.attr("y", function(d,i) {return svgHeight-vertDistribScale(i)-baseYpos+10;})
 					.attr("dy", ".3em")
 					.text(function(d) {return (d.title.rendered);});
 
