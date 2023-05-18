@@ -69,7 +69,7 @@
 					.attr("fill","#fc3")
 					.attr("stroke", "none")
 					.attr("cx", function(d) {return timeScaleYears(d['toolset-meta']['world-event-fields'].year.raw);})
-					.attr("cy", stackedItemYpos+=10)
+					.attr("cy", function(d,i) {return vertDistribScale(i);})
 					.attr("r", 5);
 
 			timelinesvg.selectAll("points")
