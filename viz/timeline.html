@@ -36,7 +36,7 @@
 		// 	console.log(data02);
 		// });
 	
-		projectData = d3.json("https://archive.kblstudio.com/wp-json/wp/v2/project");
+		d3.json("https://archive.kblstudio.com/wp-json/wp/v2/project", function(d){console.log(d);});
 
 		console.log (projectData);
 
