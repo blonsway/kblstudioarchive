@@ -91,6 +91,8 @@
 					.attr("xlink:href", function(d){ return d['toolset-meta']['project-fields']['main-image'].raw })
 					.attr("width",200)
 					.attr("height",400)
+					.attr("x", function(d) {return timeScaleYears(d['toolset-meta']['project-fields'].year.raw);})
+					.attr("y", function(d,i) {return vertDistribScale(i)+10;})
 					.attr("opacity","1");
 
 
