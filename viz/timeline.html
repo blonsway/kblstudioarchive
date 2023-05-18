@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<script src="https://d3js.org/d3.v4.min.js"></script>
+	<script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
 <body>
 	<h1>This is a dynamic timeline auto-populated with WP project posts.</h1>
@@ -36,12 +36,15 @@
 		// 	console.log(data02);
 		// });
 	
-		Promise.all([d3.json("https://archive.kblstudio.com/wp-json/wp/v2/project")]).then(function(data){ projectData = data;});
+		
 
-		console.log (projectData);
+		d3.json("https://archive.kblstudio.com/wp-json/wp/v2/project", setProjectData);
 
-		d3.json("https://archive.kblstudio.com/wp-json/wp/v2/project", getYears);
-
+		function setProjectData (data) {
+			projectData = data;
+			console.log (projectData)
+			getYears (projectData);
+		}
 
 
 		function getYears (data) {
