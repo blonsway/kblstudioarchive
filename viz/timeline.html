@@ -22,9 +22,9 @@
 			.attr("height", svgHeight)
 			.attr("margin", "20px"); 
 		
-		var projectData;
+		//var projectData;
 
-		projectData = await d3.json("https://archive.kblstudio.com/wp-json/wp/v2/project");
+		const projectData = await d3.json("https://archive.kblstudio.com/wp-json/wp/v2/project");
 		console.log("loaded json: "+projectData);
 
 		function getYears (data) {
