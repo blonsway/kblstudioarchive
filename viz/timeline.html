@@ -82,7 +82,7 @@
 					.attr("y", function(d,i) {return vertDistribScale(i)+10;})
 					.attr("dy", ".3em")
 					.text(function(d) {return (d.title.rendered);})
-					.on(mouseover, function(d,i) {return i;} );
+					.on("mouseover", function(d,i) {return i;} );
 
 
 			timelinesvg.selectAll("image")
