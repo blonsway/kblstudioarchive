@@ -18,6 +18,9 @@
 		var startYear = 1990;
 		var endYear = 2023;
 
+		var projectData;
+
+
 		var timelinesvg = d3.select("body")
 			.append("svg")
 			.attr("width", svgWidth)
@@ -25,14 +28,17 @@
 			.attr("margin", "20px"); 
 
 		
-		Promise.all([
-    		d3.json("https://archive.kblstudio.com/wp-json/wp/v2/project"),
-    		d3.json("https://archive.kblstudio.com/wp-json/wp/v2/world-event")
-		]).then(function([data01, data02]) {
-			console.log(data01);
-			console.log(data02);
-		});
+		// Promise.all([
+    	// 	d3.json("https://archive.kblstudio.com/wp-json/wp/v2/project"),
+    	// 	d3.json("https://archive.kblstudio.com/wp-json/wp/v2/world-event")
+		// ]).then(function([data01, data02]) {
+		// 	console.log(data01);
+		// 	console.log(data02);
+		// });
 	
+		d3.json("https://archive.kblstudio.com/wp-json/wp/v2/project", function(d) { projectData = return (d);});
+
+		console.log (projectData);
 
 		d3.json("https://archive.kblstudio.com/wp-json/wp/v2/project", getYears);
 
