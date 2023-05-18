@@ -28,11 +28,13 @@
 		Promise.all([
     		d3.json("https://archive.kblstudio.com/wp-json/wp/v2/project"),
     		d3.json("https://archive.kblstudio.com/wp-json/wp/v2/world-event")
-		]).then(function([data01, data02]) {
-			console.log(data01);
-			console.log(data02);
+		]).then(function(data) {
+			console.log(data[0]);
+			console.log(data[1]);
 		});
 	
+
+		d3.loadData()	
 
 		d3.json("https://archive.kblstudio.com/wp-json/wp/v2/project", getYears);
 
@@ -72,7 +74,7 @@
 					.attr("fill","#fc3")
 					.attr("stroke", "none")
 					.attr("cx", function(d) {return timeScaleYears(d['toolset-meta']['project-fields'].year.raw);})
-					.attr("cy", function(d,i) {return vertDistribScale(i);})
+					.attr("cy", function(d,i) {return svgHeight-vertDistribScale(i);})
 					.attr("r", 5);
 
 
@@ -93,7 +95,7 @@
 					.attr("xlink:href", function(d){ return d.link })
 				.append("text")
 					.attr("x", function(d) {return timeScaleYears(d['toolset-meta']['project-fields'].year.raw);})
-					.attr("y", function(d,i) {return vertDistribScale(i)+10;})
+					.attr("y", function(d,i) {return svgHeight-vertDistribScale(i)+10;})
 					.attr("dy", ".3em")
 					.text(function(d) {return (d.title.rendered);})
 					.on("mouseover", function(d,i) {
