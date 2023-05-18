@@ -65,8 +65,8 @@
 
 
 		//sort post array on year
-		var sortedProjectData = data.slice().sort((a,b) => d3.ascending(a['toolset-meta']['project-fields'].year.raw, b['toolset-meta']['project-fields'].year.raw));	
-		var sortedEventData = data.slice().sort((a,b) => d3.ascending(a['toolset-meta']['world-event-fields'].year.raw, b['toolset-meta']['world-event-fields'].year.raw));		
+		var sortedProjectData = projectData.slice().sort((a,b) => d3.ascending(a['toolset-meta']['project-fields'].year.raw, b['toolset-meta']['project-fields'].year.raw));	
+		var sortedEventData = eventData.slice().sort((a,b) => d3.ascending(a['toolset-meta']['world-event-fields'].year.raw, b['toolset-meta']['world-event-fields'].year.raw));		
 
 		timelinesvg.selectAll("points")
 			.data(sortedProjectData)
