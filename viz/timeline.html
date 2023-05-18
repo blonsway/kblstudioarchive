@@ -105,7 +105,7 @@
 					.attr("width",100)
 					.attr("height",200)
 					.attr("x", function(d) {return timeScaleYears(d['toolset-meta']['project-fields'].year.raw)+100;})
-					.attr("y", function(d,i) {return vertDistribScale(i);})
+					.attr("y", function(d,i) {return svgHeight-vertDistribScale(i)-(3*baseYpos);})
 					.attr("opacity","0");
 
 		}
