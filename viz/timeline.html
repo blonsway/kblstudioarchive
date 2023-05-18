@@ -52,17 +52,21 @@
 
 		var baseYpos = 50; //pixels above axis for lowest data point
 
-		d3.json("https://archive.kblstudio.com/wp-json/wp/v2/project").then(plotProjectData);
-		d3.json("https://archive.kblstudio.com/wp-json/wp/v2/world-event").then(plotEventData);
+		// d3.json("https://archive.kblstudio.com/wp-json/wp/v2/project").then(plotProjectData);
+		// d3.json("https://archive.kblstudio.com/wp-json/wp/v2/world-event").then(plotEventData);
 
 		Promise.all([
 		    d3.json("https://archive.kblstudio.com/wp-json/wp/v2/project"),
 		    d3.json("https://archive.kblstudio.com/wp-json/wp/v2/world-event")
-		]).then(function([data01, data02]){
+		]).then(plotData);
 
-		  console.log(data01);
-		  console.log(data02);
-		})
+
+		plotData ([projectData, eventData]) {
+
+		  console.log(projectData);
+		  console.log(eventData);
+
+		};
 
 
 		function plotProjectData (data) {
