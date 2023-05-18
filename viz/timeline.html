@@ -44,9 +44,17 @@
 		function getYears (data) {
 
 			//sort post array on year
-			var sortedProjectData = data.slice().sort((a,b) => d3.ascending(a['toolset-meta']['project-fields'].year.raw, b['toolset-meta']['project-fields'].year.raw));		
-
-			//var sortedEventData = data.slice().sort((a,b) => d3.ascending(a['toolset-meta']['world-event-fields'].year.raw, b['toolset-meta']['world-event-fields'].year.raw));		
+			var sortedData = data.slice().sort((a,b) => d3.ascending(a['toolset-meta']['project-fields'].year.raw, b['toolset-meta']['project-fields'].year.raw));			
+			
+			// d3.select("#placeholder")
+			// 	.selectAll("div")
+			// 	.data(sortedData)
+			// 	.enter()
+			// 	.append("div")
+			// 	.style("width","300px")
+			// 	.style("margin","20px")
+			// 	.style("background-color","#bbb")
+			// 	.text( function (d) {return d['toolset-meta']['project-fields'].year.raw}); 
 
 			// create scale for years based on start year and end year
 			var timeScaleYears = d3.scaleTime()
@@ -69,7 +77,7 @@
 
 
 			timelinesvg.selectAll("points")
-				.data(sortedProjectData)
+				.data(sortedData)
 				.enter()
 				.append("circle")
 					.attr("fill","#fc3")
@@ -77,6 +85,7 @@
 					.attr("cx", function(d) {return timeScaleYears(d['toolset-meta']['project-fields'].year.raw);})
 					.attr("cy", function(d,i) {return svgHeight-vertDistribScale(i);})
 					.attr("r", 5);
+
 
 
 			// timelinesvg.selectAll("points")
@@ -89,8 +98,9 @@
 			// 		.attr("cy", function(d,i) {return vertDistribScale(i);})
 			// 		.attr("r", 5);
 
+
 			timelinesvg.selectAll("points")
-				.data(sortedProjectData)
+				.data(sortedData)
 				.enter()
 				.append("a")
 					.attr("xlink:href", function(d){ return d.link })
@@ -112,6 +122,7 @@
 							.attr("opacity", 0)
 						});
 
+
 			// timelinesvg.selectAll("points")
 			// 	.data(sortedEventData)
 			// 	.enter()
@@ -125,7 +136,7 @@
 
 
 			timelinesvg.selectAll("image")
-				.data(sortedProjectData)
+				.data(sortedData)
 				.enter()
 				.append("image")
 					.attr("xlink:href", function(d){ return d['toolset-meta']['project-fields']['main-image'].raw })
