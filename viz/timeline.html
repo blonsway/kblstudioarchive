@@ -24,8 +24,7 @@
 		
 		var projectData;
 
-		d3.json("https://archive.kblstudio.com/wp-json/wp/v2/project").then(function(data) {projectData = data; console.log(projectData)});
-		console.log("outside of function "+projectData);
+		d3.json("https://archive.kblstudio.com/wp-json/wp/v2/project").then(getYears);
 
 		function getYears (data) {
 			console.log("in getYears function");
