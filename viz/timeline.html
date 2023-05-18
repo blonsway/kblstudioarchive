@@ -85,7 +85,11 @@
 					.on("mouseover", function(d,i) {
 						d3.select("#projImage"+i)
 							.attr("opacity", 1)
-						} );
+						})
+					.on("mouseout", function(d,i) {
+						d3.select("#projImage"+i)
+							.attr("opacity", 0)
+						});
 
 
 			timelinesvg.selectAll("image")
@@ -96,8 +100,8 @@
 					.attr("id", function(d,i) {return "projImage" + i})
 					.attr("width",100)
 					.attr("height",200)
-					.attr("x", function(d) {return timeScaleYears(d['toolset-meta']['project-fields'].year.raw);})
-					.attr("y", function(d,i) {return vertDistribScale(i)-200;})
+					.attr("x", function(d) {return timeScaleYears(d['toolset-meta']['project-fields'].year.raw)+100;})
+					.attr("y", function(d,i) {return vertDistribScale(i);})
 					.attr("opacity","0");
 
 
