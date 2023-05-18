@@ -89,7 +89,9 @@
 				.enter()
 				.append("image")
 					.attr("xlink:href", function(d){ return d['toolset-meta']['project-fields']['main-image'].raw })
-					.attr("opacity","0");
+					.attr("width",200)
+					.attr("height",400)
+					.attr("opacity","1");
 
 
 			timelinesvg.append("g")
