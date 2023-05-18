@@ -84,11 +84,11 @@
 					.text(function(d) {return (d.title.rendered);});
 
 
-			timelinesvg.selectAll("points")
+			timelinesvg.selectAll("image")
 				.data(sortedData)
 				.enter()
 				.append("image")
-					.attr("xlink:href", function(d){ return d.['toolset-meta']['project-fields']['main-image'].raw });
+					.attr("xlink:href", function(d){ return d['toolset-meta']['project-fields']['main-image'].raw });
 
 
 			timelinesvg.append("g")
