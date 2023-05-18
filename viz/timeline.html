@@ -12,7 +12,7 @@
 	<script type="text/javascript">
 		
 		var svgWidth = window.innerWidth-200;
-		var svgHeight = 200;
+		var svgHeight = 800;
 		var svgPadding = 20;
 
 		var startYear = 1990;
@@ -81,7 +81,8 @@
 					.attr("x", function(d) {return timeScaleYears(d['toolset-meta']['project-fields'].year.raw);})
 					.attr("y", function(d,i) {return vertDistribScale(i)+10;})
 					.attr("dy", ".3em")
-					.text(function(d) {return (d.title.rendered);});
+					.text(function(d) {return (d.title.rendered);})
+					.on(mouseover,  );
 
 
 			timelinesvg.selectAll("image")
@@ -89,11 +90,12 @@
 				.enter()
 				.append("image")
 					.attr("xlink:href", function(d){ return d['toolset-meta']['project-fields']['main-image'].raw })
+					.attr("id","projImage"+ function(d,i){return i;})
 					.attr("width",100)
 					.attr("height",200)
 					.attr("x", function(d) {return timeScaleYears(d['toolset-meta']['project-fields'].year.raw);})
 					.attr("y", function(d,i) {return vertDistribScale(i)-200;})
-					.attr("opacity","1");
+					.attr("opacity","0");
 
 
 			timelinesvg.append("g")
