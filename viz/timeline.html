@@ -24,7 +24,18 @@
 			.attr("height", svgHeight)
 			.attr("margin", "20px"); 
 
+		
+		Promise.all([
+    		d3.json("https://archive.kblstudio.com/wp-json/wp/v2/project"),
+    		d3.json("https://archive.kblstudio.com/wp-json/wp/v2/world-event")
+		]).then(function([data01, data02] {
+			console.log(data01);
+			console.log(data02);
+		}
+	
+
 		d3.json("https://archive.kblstudio.com/wp-json/wp/v2/project", getYears);
+
 
 
 		function getYears (data) {
@@ -32,7 +43,7 @@
 			//sort post array on year
 			var sortedProjectData = data.slice().sort((a,b) => d3.ascending(a['toolset-meta']['project-fields'].year.raw, b['toolset-meta']['project-fields'].year.raw));		
 
-			var sortedEventData = data.slice().sort((a,b) => d3.ascending(a['toolset-meta']['world-event-fields'].year.raw, b['toolset-meta']['world-event-fields'].year.raw));		
+			//var sortedEventData = data.slice().sort((a,b) => d3.ascending(a['toolset-meta']['world-event-fields'].year.raw, b['toolset-meta']['world-event-fields'].year.raw));		
 
 			// create scale for years based on start year and end year
 			var timeScaleYears = d3.scaleTime()
@@ -47,7 +58,7 @@
 
 			var vertDistribScale = d3.scaleLinear()
 				.domain([0,data.length])
-				.range([svgPadding,svgHeight-(5*svgPadding)])
+				.range([svgPadding,svgHeight/2])
 				.nice();
 		
 			var baseYpos = 50; //pixels above axis for first data point
@@ -65,15 +76,15 @@
 					.attr("r", 5);
 
 
-			timelinesvg.selectAll("points")
-				.data(sortedEventData)
-				.enter()
-				.append("circle")
-					.attr("fill","#ffc")
-					.attr("stroke", "none")
-					.attr("cx", function(d) {return timeScaleYears(d['toolset-meta']['world-event-fields'].year.raw);})
-					.attr("cy", function(d,i) {return vertDistribScale(i);})
-					.attr("r", 5);
+			// timelinesvg.selectAll("points")
+			// 	.data(sortedEventData)
+			// 	.enter()
+			// 	.append("circle")
+			// 		.attr("fill","#ffc")
+			// 		.attr("stroke", "none")
+			// 		.attr("cx", function(d) {return timeScaleYears(d['toolset-meta']['world-event-fields'].year.raw);})
+			// 		.attr("cy", function(d,i) {return vertDistribScale(i);})
+			// 		.attr("r", 5);
 
 			timelinesvg.selectAll("points")
 				.data(sortedProjectData)
@@ -98,16 +109,16 @@
 							.attr("opacity", 0)
 						});
 
-			timelinesvg.selectAll("points")
-				.data(sortedEventData)
-				.enter()
-				.append("a")
-					.attr("xlink:href", function(d){ return d.link })
-				.append("text")
-					.attr("x", function(d) {return timeScaleYears(d['toolset-meta']['world-event-fields'].year.raw);})
-					.attr("y", function(d,i) {return vertDistribScale(i)+10;})
-					.attr("dy", ".3em")
-					.text(function(d) {return (d.title.rendered);});
+			// timelinesvg.selectAll("points")
+			// 	.data(sortedEventData)
+			// 	.enter()
+			// 	.append("a")
+			// 		.attr("xlink:href", function(d){ return d.link })
+			// 	.append("text")
+			// 		.attr("x", function(d) {return timeScaleYears(d['toolset-meta']['world-event-fields'].year.raw);})
+			// 		.attr("y", function(d,i) {return vertDistribScale(i)+10;})
+			// 		.attr("dy", ".3em")
+			// 		.text(function(d) {return (d.title.rendered);});
 
 
 			timelinesvg.selectAll("image")
