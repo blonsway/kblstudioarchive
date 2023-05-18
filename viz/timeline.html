@@ -63,72 +63,72 @@
 
 		function plotData ([projectData, eventData]) {
 
-		  console.log(projectData);
-		  console.log(eventData);
+
+		//sort post array on year
+		var sortedProjectData = data.slice().sort((a,b) => d3.ascending(a['toolset-meta']['project-fields'].year.raw, b['toolset-meta']['project-fields'].year.raw));	
+		var sortedEventData = data.slice().sort((a,b) => d3.ascending(a['toolset-meta']['world-event-fields'].year.raw, b['toolset-meta']['world-event-fields'].year.raw));		
+
+		timelinesvg.selectAll("points")
+			.data(sortedProjectData)
+			.enter()
+			.append("circle")
+				.attr("fill","#fc3")
+				.attr("stroke", "none")
+				.attr("cx", function(d) {return timeScaleYears(d['toolset-meta']['project-fields'].year.raw);})
+				.attr("cy", function(d,i) {return svgHeight-vertDistribScale(i)-baseYpos;})
+				.attr("r", 5);
+
+
+		timelinesvg.selectAll("points")
+			.data(sortedProjectData)
+			.enter()
+			.append("a")
+				.attr("xlink:href", function(d){ return d.link })
+			.append("text")
+				.attr("x", function(d) {return timeScaleYears(d['toolset-meta']['project-fields'].year.raw);})
+				.attr("y", function(d,i) {return svgHeight-vertDistribScale(i)-baseYpos+10;})
+				.attr("dy", ".3em")
+				.text(function(d) {return (d.title.rendered);})
+				.on("mouseover", function(d,i) {
+					d3.select("#projImage"+i)
+						.transition()
+						.duration(300)
+						.attr("opacity", 1)
+					})
+				.on("mouseout", function(d,i) {
+					d3.select("#projImage"+i)
+						.transition()
+						.duration(300)
+						.attr("opacity", 0)
+					});
+
+
+		timelinesvg.selectAll("image")
+			.data(sortedProjectData)
+			.enter()
+			.append("image")
+				.attr("xlink:href", function(d){ return d['toolset-meta']['project-fields']['main-image'].raw })
+				.attr("id", function(d,i) {return "projImage" + i})
+				.attr("width",100)
+				.attr("height",200)
+				.attr("x", function(d) {return timeScaleYears(d['toolset-meta']['project-fields'].year.raw)+100;})
+				.attr("y", function(d,i) {return svgHeight-vertDistribScale(i)-(3*baseYpos);})
+				.attr("opacity","0");
+
+
 
 		};
 
 
 		function plotProjectData (data) {
 
-			//sort post array on year
-			var sortedData = data.slice().sort((a,b) => d3.ascending(a['toolset-meta']['project-fields'].year.raw, b['toolset-meta']['project-fields'].year.raw));			
-
-
-			timelinesvg.selectAll("points")
-				.data(sortedData)
-				.enter()
-				.append("circle")
-					.attr("fill","#fc3")
-					.attr("stroke", "none")
-					.attr("cx", function(d) {return timeScaleYears(d['toolset-meta']['project-fields'].year.raw);})
-					.attr("cy", function(d,i) {return svgHeight-vertDistribScale(i)-baseYpos;})
-					.attr("r", 5);
-
-
-			timelinesvg.selectAll("points")
-				.data(sortedData)
-				.enter()
-				.append("a")
-					.attr("xlink:href", function(d){ return d.link })
-				.append("text")
-					.attr("x", function(d) {return timeScaleYears(d['toolset-meta']['project-fields'].year.raw);})
-					.attr("y", function(d,i) {return svgHeight-vertDistribScale(i)-baseYpos+10;})
-					.attr("dy", ".3em")
-					.text(function(d) {return (d.title.rendered);})
-					.on("mouseover", function(d,i) {
-						d3.select("#projImage"+i)
-							.transition()
-							.duration(300)
-							.attr("opacity", 1)
-						})
-					.on("mouseout", function(d,i) {
-						d3.select("#projImage"+i)
-							.transition()
-							.duration(300)
-							.attr("opacity", 0)
-						});
-
-
-			timelinesvg.selectAll("image")
-				.data(sortedData)
-				.enter()
-				.append("image")
-					.attr("xlink:href", function(d){ return d['toolset-meta']['project-fields']['main-image'].raw })
-					.attr("id", function(d,i) {return "projImage" + i})
-					.attr("width",100)
-					.attr("height",200)
-					.attr("x", function(d) {return timeScaleYears(d['toolset-meta']['project-fields'].year.raw)+100;})
-					.attr("y", function(d,i) {return svgHeight-vertDistribScale(i)-(3*baseYpos);})
-					.attr("opacity","0");
+		
 
 		}
 
 
 		function plotEventData (data) {
 
-			//sort post array on year
-			var sortedData = data.slice().sort((a,b) => d3.ascending(a['toolset-meta']['world-event-fields'].year.raw, b['toolset-meta']['world-event-fields'].year.raw));			
 
 
 			timelinesvg.selectAll("points")
