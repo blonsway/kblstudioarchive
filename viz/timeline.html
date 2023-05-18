@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<script src="https://d3js.org/d3.v5.min.js"></script>
+	<script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
 <body>
 	<h1>This is a timeline that autopopulates from wp posts.</h1>
@@ -36,7 +36,7 @@
 
 		//create y scale for distributing points (not ideal way...better to use force or something)
 		var vertDistribScale = d3.scaleLinear()
-			.domain([0,40])
+			.domain([0,20])
 			.range([svgPadding,svgHeight/2])
 			.nice();
 	
