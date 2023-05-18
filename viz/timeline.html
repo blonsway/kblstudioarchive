@@ -77,7 +77,7 @@
 				.enter()
 				.append("text")
 					.attr("x", function(d) {return timeScaleYears(d['toolset-meta']['world-event-fields'].year.raw);})
-					.attr("y", stackedItemYpos+10)
+					.attr("y", function(d,i) {return vertDistribScale(i)+10;})
 					.attr("dy", ".3em")
 					.text(function(d) {return (d.title.rendered);});
 
