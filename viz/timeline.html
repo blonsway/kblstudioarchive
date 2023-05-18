@@ -53,7 +53,7 @@
 				.ticks(endYear-startYear)
 				.tickFormat(d3.format("d"));
 
-			var vertDistribScale = d3.scale()
+			var vertDistribScale = d3.scaleLinear()
 				.domain([0,data.length])
 				.range([svgPadding,svgHeight-svgPadding])
 				.nice();
