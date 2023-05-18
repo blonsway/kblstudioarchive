@@ -24,13 +24,13 @@
 			.attr("height", svgHeight)
 			.attr("margin", "20px"); 
 
-		d3.json("https://archive.kblstudio.com/wp-json/wp/v2/world-event", getYears);
+		d3.json("https://archive.kblstudio.com/wp-json/wp/v2/project", getYears);
 
 
 		function getYears (data) {
 
 			//sort post array on year
-			var sortedData = data.slice().sort((a,b) => d3.ascending(a['toolset-meta']['world-event-fields'].year.raw, b['toolset-meta']['world-event-fields'].year.raw));			
+			var sortedData = data.slice().sort((a,b) => d3.ascending(a['toolset-meta']['project-fields'].year.raw, b['toolset-meta']['project-fields'].year.raw));			
 			
 			// d3.select("#placeholder")
 			// 	.selectAll("div")
@@ -40,7 +40,7 @@
 			// 	.style("width","300px")
 			// 	.style("margin","20px")
 			// 	.style("background-color","#bbb")
-			// 	.text( function (d) {return d['toolset-meta']['world-event-fields'].year.raw}); 
+			// 	.text( function (d) {return d['toolset-meta']['project-fields'].year.raw}); 
 
 			// create scale for years based on start year and end year
 			var timeScaleYears = d3.scaleTime()
@@ -68,7 +68,7 @@
 				.append("circle")
 					.attr("fill","#fc3")
 					.attr("stroke", "none")
-					.attr("cx", function(d) {return timeScaleYears(d['toolset-meta']['world-event-fields'].year.raw);})
+					.attr("cx", function(d) {return timeScaleYears(d['toolset-meta']['project-fields'].year.raw);})
 					.attr("cy", function(d,i) {return vertDistribScale(i);})
 					.attr("r", 5);
 
@@ -76,7 +76,7 @@
 				.data(sortedData)
 				.enter()
 				.append("text")
-					.attr("x", function(d) {return timeScaleYears(d['toolset-meta']['world-event-fields'].year.raw);})
+					.attr("x", function(d) {return timeScaleYears(d['toolset-meta']['project-fields'].year.raw);})
 					.attr("y", function(d,i) {return vertDistribScale(i)+10;})
 					.attr("dy", ".3em")
 					.text(function(d) {return (d.title.rendered);});
