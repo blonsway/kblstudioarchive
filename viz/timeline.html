@@ -55,7 +55,7 @@
 
 			var vertDistribScale = d3.scaleLinear()
 				.domain([0,data.length])
-				.range([svgPadding,svgHeight-svgPadding])
+				.range([svgPadding,svgHeight-(5*svgPadding)])
 				.nice();
 		
 			var baseYpos = 50; //pixels above axis for first data point
