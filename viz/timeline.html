@@ -75,6 +75,8 @@
 			timelinesvg.selectAll("points")
 				.data(sortedData)
 				.enter()
+				.append("a")
+					.attr("xlink:href", function(d){ return d.link })
 				.append("text")
 					.attr("x", function(d) {return timeScaleYears(d['toolset-meta']['project-fields'].year.raw);})
 					.attr("y", function(d,i) {return vertDistribScale(i)+10;})
@@ -86,10 +88,10 @@
 				.attr("transform", "translate(0,"+(svgHeight-40)+")")
 				.call(xAxis)
 				.selectAll("text")
-				.style("text-anchor","end")
-				.attr("dx","-1em")
-				.attr("dy","-.5em")
-				.attr("transform","rotate(-90)");
+					.style("text-anchor","end")
+					.attr("dx","-1em")
+					.attr("dy","-.5em")
+					.attr("transform","rotate(-90)");
 
 
 		}
