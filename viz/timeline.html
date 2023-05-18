@@ -84,11 +84,12 @@
 					.text(function(d) {return (d.title.rendered);});
 
 
-			// timelinesvg.selectAll("image")
-			// 	.data(sortedData)
-			// 	.enter()
-			// 	.append("image")
-			// 		.attr("xlink:href", function(d){ return d['toolset-meta']['project-fields']['main-image'].raw });
+			timelinesvg.selectAll("image")
+				.data(sortedData)
+				.enter()
+				.append("image")
+					.attr("xlink:href", function(d){ return d['toolset-meta']['project-fields']['main-image'].raw })
+					.attr("opacity","0");
 
 
 			timelinesvg.append("g")
