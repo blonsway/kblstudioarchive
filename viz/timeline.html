@@ -40,12 +40,6 @@
 
 		d3.json("https://archive.kblstudio.com/wp-json/wp/v2/project", getYears);
 
-		function setProjectData (data) {
-			projectData = data;
-			console.log ("here! "+data);
-			getYears (projectData);
-		}
-
 
 		function getYears (data) {
 
