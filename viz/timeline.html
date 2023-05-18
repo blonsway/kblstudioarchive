@@ -22,12 +22,12 @@
 			.attr("height", svgHeight)
 			.attr("margin", "20px"); 
 		
-		d3.json("https://archive.kblstudio.com/wp-json/wp/v2/project", getYears);
+		d3.json("https://archive.kblstudio.com/wp-json/wp/v2/project", getYears() );
 		console.log("loaded json");
 
 		function getYears (data) {
 			console.log("in getYears function");
-			
+
 			//sort post array on year
 			var sortedData = data.slice().sort((a,b) => d3.ascending(a['toolset-meta']['project-fields'].year.raw, b['toolset-meta']['project-fields'].year.raw));			
 
