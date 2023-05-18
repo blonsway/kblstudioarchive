@@ -84,10 +84,14 @@
 					.text(function(d) {return (d.title.rendered);})
 					.on("mouseover", function(d,i) {
 						d3.select("#projImage"+i)
+							.transition()
+							.duration(300)
 							.attr("opacity", 1)
 						})
 					.on("mouseout", function(d,i) {
 						d3.select("#projImage"+i)
+							.transition()
+							.duration(300)
 							.attr("opacity", 0)
 						});
 
