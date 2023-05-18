@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<script src="https://d3js.org/d3.v4.min.js"></script>
+	<script src="https://d3js.org/d3.v5.min.js"></script>
 </head>
 <body>
 	<h1>This is a timeline that autopopulates from wp posts.</h1>
@@ -22,8 +22,10 @@
 			.attr("height", svgHeight)
 			.attr("margin", "20px"); 
 		
-		d3.json("https://archive.kblstudio.com/wp-json/wp/v2/project", getYears );
-		console.log("loaded json");
+		const projectData;
+
+		projectData = await d3.json("https://archive.kblstudio.com/wp-json/wp/v2/project");
+		console.log("loaded json: "+projectData);
 
 		function getYears (data) {
 			console.log("in getYears function");
