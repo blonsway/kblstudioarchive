@@ -55,15 +55,14 @@
 		d3.json("https://archive.kblstudio.com/wp-json/wp/v2/project").then(plotProjectData);
 		d3.json("https://archive.kblstudio.com/wp-json/wp/v2/world-event").then(plotEventData);
 
-		// Promise.all([
-		//     d3.json("https://archive.kblstudio.com/wp-json/wp/v2/project"),
-		//     d3.json('file02.json')
-		// ]).then(function([data01, data02]){
+		Promise.all([
+		    d3.json("https://archive.kblstudio.com/wp-json/wp/v2/project"),
+		    d3.json("https://archive.kblstudio.com/wp-json/wp/v2/world-event")
+		]).then(function([data01, data02]){
 
-		//   // manipulate data here
-		//   // data01
-		//   // data02
-		// })
+		  console.log(data01);
+		  console.log(data02);
+		})
 
 
 		function plotProjectData (data) {
