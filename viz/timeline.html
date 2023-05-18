@@ -90,7 +90,7 @@
 				.enter()
 				.append("image")
 					.attr("xlink:href", function(d){ return d['toolset-meta']['project-fields']['main-image'].raw })
-					.attr("id","projImage"+ function(d,i){return i;})
+					.attr("id",function(d,i){return i;})
 					.attr("width",100)
 					.attr("height",200)
 					.attr("x", function(d) {return timeScaleYears(d['toolset-meta']['project-fields'].year.raw);})
