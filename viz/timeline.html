@@ -22,7 +22,7 @@
 			.attr("height", svgHeight)
 			.attr("margin", "20px"); 
 		
-		d3.json("https://archive.kblstudio.com/wp-json/wp/v2/project", getYears() );
+		d3.json("https://archive.kblstudio.com/wp-json/wp/v2/project", getYears(data) );
 		console.log("loaded json");
 
 		function getYears (data) {
