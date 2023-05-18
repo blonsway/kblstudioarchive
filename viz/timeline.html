@@ -28,8 +28,8 @@
 		Promise.all([
     		d3.json("https://archive.kblstudio.com/wp-json/wp/v2/project"),
     		d3.json("https://archive.kblstudio.com/wp-json/wp/v2/world-event")
-		]).then(function(data) {
-			console.log(data);
+		]).then(function([data01, data02]) {
+			console.log(data01);
 			//console.log(data[1]);
 		});
 	
