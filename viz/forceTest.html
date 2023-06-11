@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<script src="https://d3js.org/d3.v4.min.js"></script>
+	<script src="https://d3js.org/d3.v3.min.js"></script>
 </head>
 <body>
 
@@ -9,20 +9,19 @@
 		var svgWidth = 300, svgHeight = 300;
 		var forceNodes = [{}, {}, {}, {}, {}];
 
-		var force = d3.layout.force()
-           .nodes(forceNodes)
-           .size([svgWidth, svgHeight])
-           .charge([-100])
-           .start();
-
 		var timelinesvg = d3.select("body")
 			.append("svg")
 			.attr("width", svgWidth)
 			.attr("height", svgHeight)
 			.attr("margin", "20px"); 
 
+		var force = d3.layout.force()
+           .nodes(forceNodes)
+           .size([svgWidth, svgHeight])
+           .charge([-100])
+           .on('tick', ticked);
+           .start();
 
-		force.on('tick', ticked);
 
 		function ticked() {
 			var nodes= timelinesvg.selectAll('circle')
