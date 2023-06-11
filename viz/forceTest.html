@@ -7,7 +7,7 @@
 
 	<script type="text/javascript">
 		var svgWidth = 300, svgHeight = 300;
-		var nodes = [{}, {}, {}, {}, {}];
+		var forceNodes = [{}, {}, {}, {}, {}];
 
 		var timelinesvg = d3.select("body")
 			.append("svg")
@@ -15,16 +15,24 @@
 			.attr("height", svgHeight)
 			.attr("margin", "20px"); 
 
+		var force = d3.layout.force()
+           .nodes(data)
+           .size([svgWidth, svgHeight])
+           .linkDistance([50])
+           .charge([-100])
+           .start()
+
+
 		var simulation = d3.forceSimulation(nodes)
 			.force('charge', d3.forceManyBody())
 			.force('center', d3.forceCenter(svgWidth/2, svgHeight/2))
 			.on('tick', ticked);
 
 		function ticked() {
-			timelinesvg.selectAll('circle')
-				.data('nodes')
+			var nodes= timelinesvg.selectAll('circle')
+				.data('forceNodes')
 				.join('circle')
-				.attr('r',5)
+				.attr('r',10)
 				.attr('cx', function(d) {return d.x;})
 				.attr('cy', function(d) {return d.y;});
 
