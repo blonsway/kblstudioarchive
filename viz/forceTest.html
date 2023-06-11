@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<script src="https://d3js.org/d3.v3.min.js"></script>
+	<script src="https://d3js.org/d3.v4.min.js"></script>
 </head>
 <body>
 
@@ -24,10 +24,11 @@
 
 
 		function ticked() {
-			
+
 			timelinesvg.selectAll('circle')
 				.data('forceNodes')
-				.join('circle')
+				.enter()
+				.append('circle')
 				.attr('r',10)
 				.attr('cx', function(d) {return d.x;})
 				.attr('cy', function(d) {return d.y;});
