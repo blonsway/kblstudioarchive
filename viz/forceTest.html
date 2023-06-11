@@ -21,8 +21,7 @@
 			.on('tick', ticked);
 
 		function ticked() {
-			timelinesvg.append("g")
-				.selectAll('circle')
+			timelinesvg.selectAll('circle')
 				.data('nodes')
 				.join('circle')
 				.attr('r',5)
