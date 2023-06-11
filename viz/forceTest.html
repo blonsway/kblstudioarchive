@@ -23,7 +23,8 @@
 
 		function ticked() {
 
-			timelinesvg.selectAll('circle')
+			timelinesvg.append("g")
+				.selectAll('circle')
 				.data('nodes')
 				.join('circle')
 				.attr('r',5)
