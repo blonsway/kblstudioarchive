@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<script src="https://d3js.org/d3.v6.min.js"></script>
+	<script src="https://d3js.org/d3.v4.min.js"></script>
 </head>
 <body>
 
 	<script type="text/javascript">
-		var svgWidth = 300, svgHeight = 300;
-		var forceNodes = [{}, {}, {}, {}, {}];
+		var svgWidth = 600, svgHeight = 600;
+		var graph = {
+			nodes: [{name:"A"}, {name: "B"}, {name:"C"}, {name:"D"}, {name:"E"}],
+			links: [{source:"A", target: "B},{source:"C", target: "B"}]
+		};
 
 		var timelinesvg = d3.select("body")
 			.append("svg")
@@ -15,15 +18,24 @@
 			.attr("height", svgHeight)
 			.attr("margin", "20px"); 
 
-		const simulation = d3.forceSimulation(forceNodes)
-		   	.force('charge', d3.forceManyBody().strength(-100))
+		var simulation = d3.forceSimulation(graph.nodes)
+			.force('link', d3.forceLink().id(function (d) {return d.name;}).links(graph.links))
+		   	.force('charge', d3.forceManyBody().strength(-300))
 		   	.force('center', d3.forceCenter(svgWidth/2, svgHeight/2));
 
 		var node = timelinesvg.selectAll('circle')
-			.data('forceNodes')
+			.data(graph.nodes)
 			.enter()
 			.append('circle')
 			.attr('r',10);
+
+		var link = timelinesvg
+			.append('g')
+			.selectAll('line')
+			.data(graph.links)
+			.enter()
+			.append('line')
+			.attr('stroke-width', function(d) {return 3;});
 
 		simulation.on('tick', () => {
 				node.attr('cx', function(d) {return d.x;});
