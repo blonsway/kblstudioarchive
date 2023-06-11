@@ -38,8 +38,8 @@
 			.attr('stroke-width', function(d) {return 3;});
 
 		simulation.on('tick', () => {
-				node.attr('cx', function(d) {return d.x;});
-				node.attr('cy', function(d) {return 150;});
+				node.attr('cx', function(d) {return 300;});
+				node.attr('cy', function(d) {return d.y;});
 		});
 
 
