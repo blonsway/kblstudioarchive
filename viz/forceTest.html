@@ -21,6 +21,7 @@
 		var simulation = d3.forceSimulation(graph.nodes)
 			//.force('link', d3.forceLink().id(function (d) {return d.name;}).links(graph.links))
 		   	//.force('charge', d3.forceManyBody().strength(-50))
+		   	.force('x', d3.forceX(svgWidth/2)
 		   	.force('y', d3.forceY(svgHeight/2).strength(.3))
 		   	.force('collide', d3.forceCollide(50));
 
