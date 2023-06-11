@@ -24,7 +24,8 @@
 
 
 		function ticked() {
-			var nodes= timelinesvg.selectAll('circle')
+			
+			timelinesvg.selectAll('circle')
 				.data('forceNodes')
 				.join('circle')
 				.attr('r',10)
