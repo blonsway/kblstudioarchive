@@ -16,7 +16,7 @@
 			.attr("margin", "20px"); 
 
 		var force = d3.layout.force()
-           .nodes(data)
+           .nodes(forceNodes)
            .size([svgWidth, svgHeight])
            .linkDistance([50])
            .charge([-100])
