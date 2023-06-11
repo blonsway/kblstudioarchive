@@ -1,24 +1,153 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<script src="https://d3js.org/d3.v4.min.js"></script>
+	<script src="https://d3js.org/d3.v5.min.js"></script>
 </head>
 <body>
-	<h1>This is a timeline.</h1>
-
-
-	<p id="data-placeholder"></p>
+	<h1>This is a timeline that autopopulates from wp posts.</h1>
+	
 
 	<script type="text/javascript">
 		
-		d3.json("https://archive.kblstudio.com/wp-json/wp/v2/world-event?per_page=1", 
-			function (data) {
-				d3.select("#data-placeholder")
-				.data(data)
-				.text(function (d) {
-					return d;
-				}); 
-			});
+		var svgWidth = window.innerWidth-200;
+		var svgHeight = 500;
+		var svgPadding = 20;
+
+		var startYear = 1990;
+		var endYear = 2023;
+
+		//create svg and axes
+		var timelinesvg = d3.select("body")
+			.append("svg")
+			.attr("width", svgWidth)
+			.attr("height", svgHeight)
+			.attr("margin", "20px"); 
+		
+		// create scale for years based on start year and end year
+		var timeScaleYears = d3.scaleTime()
+			.domain([startYear, endYear])
+			.range([svgPadding,svgWidth-svgPadding])
+			.nice();
+
+		//create x axis
+		var xAxis = d3.axisBottom(timeScaleYears)
+			.ticks(endYear-startYear)
+			.tickFormat(d3.format("d"));
+
+		//create y scale for distributing points (not ideal way...better to use force or something)
+		var vertDistribScale = d3.scaleLinear()
+			.domain([0,20])
+			.range([svgPadding,svgHeight/2])
+			.nice();
+	
+		//draw x axis and rotate tick labels
+		timelinesvg.append("g")
+			.attr("transform", "translate(0,"+(svgHeight-40)+")")
+			.call(xAxis)
+			.selectAll("text")
+				.style("text-anchor","end")
+				.attr("dx","-1em")
+				.attr("dy","-.5em")
+				.attr("transform","rotate(-90)");
+
+		var baseYpos = 50; //pixels above axis for lowest data point
+
+		// d3.json("https://archive.kblstudio.com/wp-json/wp/v2/project").then(plotProjectData);
+		// d3.json("https://archive.kblstudio.com/wp-json/wp/v2/world-event").then(plotEventData);
+
+		Promise.all([
+		    d3.json("https://archive.kblstudio.com/wp-json/wp/v2/project"),
+		    d3.json("https://archive.kblstudio.com/wp-json/wp/v2/world-event")
+		]).then(plotData);
+
+
+		function plotData ([projectData, eventData]) {
+
+
+			//sort post array on year
+			var sortedProjectData = projectData.slice().sort((a,b) => d3.ascending(a['toolset-meta']['project-fields'].year.raw, b['toolset-meta']['project-fields'].year.raw));	
+			var sortedEventData = eventData.slice().sort((a,b) => d3.ascending(a['toolset-meta']['world-event-fields'].year.raw, b['toolset-meta']['world-event-fields'].year.raw));		
+
+			//
+			//plot project data
+			//
+
+			timelinesvg.selectAll("points")
+				.data(sortedProjectData)
+				.enter()
+				.append("circle")
+					.attr("fill","#fc3")
+					.attr("stroke", "none")
+					.attr("cx", function(d) {return timeScaleYears(d['toolset-meta']['project-fields'].year.raw);})
+					.attr("cy", function(d,i) {return svgHeight-vertDistribScale(i)-baseYpos;})
+					.attr("r", 5);
+
+			timelinesvg.selectAll("points")
+				.data(sortedProjectData)
+				.enter()
+				.append("a")
+					.attr("xlink:href", function(d){ return d.link })
+				.append("text")
+					.attr("x", function(d) {return timeScaleYears(d['toolset-meta']['project-fields'].year.raw);})
+					.attr("y", function(d,i) {return svgHeight-vertDistribScale(i)-baseYpos+10;})
+					.attr("dy", ".3em")
+					.text(function(d) {return (d.title.rendered);})
+					.on("mouseover", function(d,i) {
+						d3.select("#projImage"+i)
+							.transition()
+							.duration(300)
+							.attr("opacity", 1)
+						})
+					.on("mouseout", function(d,i) {
+						d3.select("#projImage"+i)
+							.transition()
+							.duration(300)
+							.attr("opacity", 0)
+						});
+
+
+			timelinesvg.selectAll("image")
+				.data(sortedProjectData)
+				.enter()
+				.append("image")
+					.attr("xlink:href", function(d){ return d['toolset-meta']['project-fields']['main-image'].raw })
+					.attr("id", function(d,i) {return "projImage" + i})
+					.attr("width",100)
+					.attr("height",200)
+					.attr("x", function(d) {return timeScaleYears(d['toolset-meta']['project-fields'].year.raw)+100;})
+					.attr("y", function(d,i) {return svgHeight-vertDistribScale(i)-(3*baseYpos);})
+					.attr("opacity","0");
+
+			//
+			//plot event data
+			//
+
+			timelinesvg.selectAll("points")
+				.data(sortedEventData)
+				.enter()
+				.append("circle")
+					.attr("fill","#f22")
+					.attr("stroke", "none")
+					.attr("cx", function(d) {return timeScaleYears(d['toolset-meta']['world-event-fields'].year.raw);})
+					.attr("cy", function(d,i) {return svgHeight-vertDistribScale(i)-baseYpos;})
+					.attr("r", 5);
+
+
+			timelinesvg.selectAll("points")
+				.data(sortedEventData)
+				.enter()
+				.append("a")
+					.attr("xlink:href", function(d){ return d.link })
+				.append("text")
+					.attr("x", function(d) {return timeScaleYears(d['toolset-meta']['world-event-fields'].year.raw);})
+					.attr("y", function(d,i) {return svgHeight-vertDistribScale(i)-baseYpos+10;})
+					.attr("dy", ".3em")
+					.text(function(d) {return (d.title.rendered);});
+
+
+
+		};
+
 
 
 	</script>
