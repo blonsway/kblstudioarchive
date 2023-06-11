@@ -9,7 +9,6 @@
 		var svgWidth = 300, svgHeight = 300;
 		var nodes = [{}, {}, {}, {}, {}];
 
-
 		var timelinesvg = d3.select("body")
 			.append("svg")
 			.attr("width", svgWidth)
@@ -18,11 +17,10 @@
 
 		var simulation = d3.forceSimulation(nodes)
 			.force('charge', d3.forceManyBody())
-			.force('center', d3.forceCenter(width/2, height/2))
+			.force('center', d3.forceCenter(svgWidth/2, svgHeight/2))
 			.on('tick', ticked);
 
 		function ticked() {
-
 			timelinesvg.append("g")
 				.selectAll('circle')
 				.data('nodes')
