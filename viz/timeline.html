@@ -16,8 +16,7 @@
 		var startYear = 1990;
 		var endYear = 2023;
 
-		var itemCountPerYear = new Array(endYear-startYear);
-		itemCountPerYear = itemCountPerYear.map(function() {return(0);});
+		var itemCountPerYear = new Array(endYear-startYear).fill(0);
 		console.log(itemCountPerYear);
 
 
