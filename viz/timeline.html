@@ -90,7 +90,24 @@
 						itemCountPerYear[arrayIndex]++;
 						return svgHeight-baseYpos-20*itemCountPerYear[arrayIndex];
 					})
-					.attr("r", 5);
+					.attr("r", 5)
+				.append("circle")
+				.attr("fill", "#0f0")
+				.attr("stroke", "none")
+				.attr("cx", function(d) {
+					if (d['toolset-meta']['project-fields'].endYear.raw == null) {
+						return timeScaleYears(d['toolset-meta']['project-fields'].year.raw);
+					}
+					else {
+						return timeScaleYears(d['toolset-meta']['project-fields'].endYear.raw);
+					}
+				})
+				.attr("cy", function(d) {
+						var elementYear = d['toolset-meta']['project-fields'].endYear.raw;
+						var arrayIndex = endYear-Number(elementYear);
+						itemCountPerYear[arrayIndex]++;
+						return svgHeight-baseYpos-20*itemCountPerYear[arrayIndex];
+					});
 
 			timelinesvg.selectAll("points")
 				.data(sortedProjectData)
