@@ -95,6 +95,7 @@
 				.attr("fill", "#0f0")
 				.attr("stroke", "none")
 				.attr("cx", function(d) {
+					console.log("project end year: "+d['toolset-meta']['project-fields']['end-year'].raw);
 					if (d['toolset-meta']['project-fields']['end-year'].raw === "") { //need strict equality check for null strings
 						return timeScaleYears(d['toolset-meta']['project-fields'].year.raw);
 					} else {
