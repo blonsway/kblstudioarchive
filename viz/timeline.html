@@ -79,6 +79,7 @@
 			timelinesvg.selectAll("points")
 				.data(sortedProjectData)
 				.enter()
+				.append("g")
 				.append("circle")
 					.attr("fill","#fc3")
 					.attr("stroke", "none")
