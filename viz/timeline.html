@@ -17,6 +17,8 @@
 		var endYear = 2023;
 
 		var itemCountPerYear = new Array(endYear-startYear);
+		itemCountPerYear = itemCountPerYear.map('0');
+		console.log(itemCountPerYear);
 
 
 		//create svg and axes
@@ -87,7 +89,7 @@
 						var elementYear = d['toolset-meta']['project-fields'].year.raw;
 						var arrayIndex = endYear-Number(elementYear);
 						console.log("elementYear: "+elementYear);
-						itemCountPerYear = itemCountPerYear.map(arrayIndex => ++arrayIndex);
+						itemCountPerYear[arrayIndex]++;
 						console.log("itemCountPerYear["+arrayIndex+"]: "+itemCountPerYear[arrayIndex]);
 						return svgHeight-baseYpos-20*itemCountPerYear[arrayIndex];
 					})
