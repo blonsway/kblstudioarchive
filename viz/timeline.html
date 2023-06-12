@@ -113,11 +113,11 @@
 						if (d['toolset-meta']['project-fields']['end-year'].raw === "") { //need strict equality check for null strings
 							var elementYear = d['toolset-meta']['project-fields'].year.raw;
 							var arrayIndex = endYear-Number(elementYear);
-							return svgHeight-baseYpos-20*(itemCountPerYear[arrayIndex])-1; //element in array has already been incremented
+							return svgHeight-baseYpos-20*(itemCountPerYear[arrayIndex]-1); //element in array has already been incremented
 						} else {
 							var elementYear = d['toolset-meta']['project-fields']['end-year'].raw;
 							var arrayIndex = endYear-Number(elementYear);
-							return svgHeight-baseYpos-20*(itemCountPerYear[arrayIndex])-1; //element in array has already been incremented
+							return svgHeight-baseYpos-20*(itemCountPerYear[arrayIndex]-1); //element in array has already been incremented
 						}
 					})
 					.attr("r", 5);
