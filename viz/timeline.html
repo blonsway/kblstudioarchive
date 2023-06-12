@@ -95,7 +95,7 @@
 					.attr("y", function(d,i) {return svgHeight-vertDistribScale(i)-baseYpos+10;})
 					.attr("dy", ".3em")
 					//.text(function(d) {return (d.title.rendered);})
-					.text(function(d) {return (d['toolset-meta']['project-fields'].year.raw})
+					.text(function(d) {return (d['toolset-meta']['project-fields'].year.raw)})
 					.on("mouseover", function(d,i) {
 						d3.select("#projImage"+i)
 							.transition()
