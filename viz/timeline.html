@@ -87,7 +87,7 @@
 						var elementYear = d['toolset-meta']['project-fields'].year.raw;
 						var arrayIndex = endYear-Number(elementYear);
 						console.log("elementYear: "+elementYear);
-						itemCountPerYear[arrayIndex]=itemCountPerYear[arrayIndex]+1;
+						itemCountPerYear = itemCountPerYear.map(arrayIndex => ++arrayIndex);
 						console.log("itemCountPerYear["+arrayIndex+"]: "+itemCountPerYear[arrayIndex]);
 						return svgHeight-baseYpos-20*itemCountPerYear[arrayIndex];
 					})
