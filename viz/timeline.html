@@ -95,15 +95,15 @@
 				.attr("fill", "#0f0")
 				.attr("stroke", "none")
 				.attr("cx", function(d) {
-					if (d['toolset-meta']['project-fields'].endYear.raw == null) {
+					if (d['toolset-meta']['project-fields'].end-year.raw == null) {
 						return timeScaleYears(d['toolset-meta']['project-fields'].year.raw);
 					}
 					else {
-						return timeScaleYears(d['toolset-meta']['project-fields'].endYear.raw);
+						return timeScaleYears(d['toolset-meta']['project-fields'].end-year.raw);
 					}
 				})
 				.attr("cy", function(d) {
-						var elementYear = d['toolset-meta']['project-fields'].endYear.raw;
+						var elementYear = d['toolset-meta']['project-fields'].end-year.raw;
 						var arrayIndex = endYear-Number(elementYear);
 						itemCountPerYear[arrayIndex]++;
 						return svgHeight-baseYpos-20*itemCountPerYear[arrayIndex];
