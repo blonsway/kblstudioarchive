@@ -87,9 +87,7 @@
 					.attr("cy", function(d) {
 						var elementYear = d['toolset-meta']['project-fields'].year.raw;
 						var arrayIndex = endYear-Number(elementYear);
-						console.log("elementYear: "+elementYear);
 						itemCountPerYear[arrayIndex]++;
-						console.log("itemCountPerYear["+arrayIndex+"]: "+itemCountPerYear[arrayIndex]);
 						return svgHeight-baseYpos-20*itemCountPerYear[arrayIndex];
 					})
 					.attr("r", 5);
@@ -142,7 +140,12 @@
 					.attr("fill","#f22")
 					.attr("stroke", "none")
 					.attr("cx", function(d) {return timeScaleYears(d['toolset-meta']['world-event-fields'].year.raw);})
-					.attr("cy", function(d,i) {return svgHeight-vertDistribScale(i)-baseYpos;})
+					.attr("cy", function(d) {
+						var elementYear = d['toolset-meta']['world-event-fields'].year.raw;
+						var arrayIndex = endYear-Number(elementYear);
+						itemCountPerYear[arrayIndex]++;
+						return svgHeight-baseYpos-20*itemCountPerYear[arrayIndex];
+					})
 					.attr("r", 5);
 
 
