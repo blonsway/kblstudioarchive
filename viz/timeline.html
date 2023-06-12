@@ -78,10 +78,10 @@
 
 			var dataPoints = timelinesvg.selectAll("points")
 				.data(sortedProjectData)
-				.enter();
+				.enter()
+				.append("g");
 
 			dataPoints	
-				.append("g")
 				.append("circle")
 					.attr("fill","#fc3")
 					.attr("stroke", "none")
@@ -94,7 +94,9 @@
 						return svgHeight-baseYpos-20*itemCountPerYear[arrayIndex];
 					})
 					.attr("r", 5)
-				.insert("circle")
+					
+			dataPoints
+				.append("circle")
 					.attr("fill", "#0f0")
 					.attr("stroke", "none")
 					.attr("cx", function(d) {
