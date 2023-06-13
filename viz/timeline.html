@@ -48,7 +48,7 @@
 		timelinesvg.append("g")
 			.attr("transform", "translate(0,"+(svgHeight-40)+")")
 			.call(xAxis)
-			.call(d3.zoom().on("zoom", zoomed));
+			.call(d3.zoom().on("zoom", zoomed))
 			.selectAll("text")
 				.style("text-anchor","end")
 				.attr("dx","-1em")
