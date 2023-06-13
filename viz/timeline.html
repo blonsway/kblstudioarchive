@@ -74,6 +74,7 @@
 
 			//temp index of element being drawn (project or event) in itemCountPerYear array
 			var arrayIndex = 0; 
+			var itemYposition;
 
 			//
 			//plot project data
@@ -101,7 +102,7 @@
 					.each(function(d,i) {
 						arrayIndex = endYear-Number(d['toolset-meta']['project-fields'].year.raw);
 						itemCountPerYear [arrayIndex]++;
-						
+						itemYposition = svgHeight-baseYpos-20*itemCountPerYear[arrayIndex];
 					})
 					.style("stroke", "#fc3")
 					.style("stroke-width", 10)
@@ -120,8 +121,8 @@
 					// 	return svgHeight-baseYpos-20*itemCountPerYear[arrayIndex];
 
 					// })
-					.attr("y1", svgHeight-baseYpos-20*itemCountPerYear[arrayIndex])
-					.attr("y2", svgHeight-baseYpos-20*itemCountPerYear[arrayIndex]);
+					.attr("y1", itemYposition)
+					.attr("y2", itemYposition);
 
 			// attempt to draw 2nd point at "end" time
 			// dataPoints
