@@ -115,12 +115,13 @@
 						}
 
 					})
-					.attr("y1", function(d,i){ 
-						console.log(itemCountPerYear);
-						return svgHeight-baseYpos-20*itemCountPerYear[arrayIndex];
+					// .attr("y1", function(d){ 
+					// 	console.log(itemCountPerYear);
+					// 	return svgHeight-baseYpos-20*itemCountPerYear[arrayIndex];
 
-					})
-					.attr("y2", function(d,i){
+					// })
+					.attr("y1", svgHeight-baseYpos-20*itemCountPerYear[arrayIndex])
+					.attr("y2", function(d){
 						return svgHeight-baseYpos-20*itemCountPerYear[arrayIndex];
 					});
 
