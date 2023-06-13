@@ -123,7 +123,7 @@
 					// 	return svgHeight-baseYpos-20*itemCountPerYear[arrayIndex];
 
 					// })
-					.attr("y1", itemYposition)
+					.attr("y1", function() {console.log("in y1: "+itemYposition); return itemYposition;})
 					.attr("y2", itemYposition);
 
 			// attempt to draw 2nd point at "end" time
