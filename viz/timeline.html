@@ -107,7 +107,11 @@
 						}
 
 					})
-					.attr("y1", function(d,i){itemCountPerYear[i]++; return svgHeight-baseYpos-20*itemCountPerYear[i];})
+					.attr("y1", function(d,i){ 
+						itemCountPerYear[i]++; 
+						console.log(itemCountPerYear); 
+						return svgHeight-baseYpos-20*itemCountPerYear[i];
+					})
 					.attr("y2", function(d,i){return svgHeight-baseYpos-20*itemCountPerYear[i];});
 
 			// attempt to draw 2nd point at "end" time
