@@ -96,7 +96,8 @@
 			dataPoints
 				.append("line")
 					.style("stroke", "#fc3")
-					.style("stroke-width", 2)
+					.style("stroke-width", 5)
+					.style("stroke-linecap", "round")
 					.attr("x1", function(d) {return timeScaleYears(d['toolset-meta']['project-fields'].year.raw);})
 					.attr("x2", function(d) {
 						if (d['toolset-meta']['project-fields']['end-year'].raw === "") {
