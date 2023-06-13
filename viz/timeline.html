@@ -87,7 +87,7 @@
 					.attr("stroke", "none")
 					.attr("cx", function(d) {return timeScaleYears(d['toolset-meta']['project-fields'].year.raw);})
 					//.attr("cy", function(d,i) {return svgHeight-vertDistribScale(i)-baseYpos;})
-					.attr("cy", function(d) {
+					.attr("cy", function(d,i) {
 						//var elementYear = d['toolset-meta']['project-fields'].year.raw;
 						//var arrayIndex = endYear-Number(elementYear);
 						itemCountPerYear[i]++;
