@@ -121,9 +121,7 @@
 
 					// })
 					.attr("y1", svgHeight-baseYpos-20*itemCountPerYear[arrayIndex])
-					.attr("y2", function(d){
-						return svgHeight-baseYpos-20*itemCountPerYear[arrayIndex];
-					});
+					.attr("y2", svgHeight-baseYpos-20*itemCountPerYear[arrayIndex]);
 
 			// attempt to draw 2nd point at "end" time
 			// dataPoints
