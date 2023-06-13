@@ -56,8 +56,6 @@
 
 		var baseYpos = 50; //pixels above axis for lowest data point
 
-		// d3.json("https://archive.kblstudio.com/wp-json/wp/v2/project").then(plotProjectData);
-		// d3.json("https://archive.kblstudio.com/wp-json/wp/v2/world-event").then(plotEventData);
 
 		Promise.all([
 		    d3.json("https://archive.kblstudio.com/wp-json/wp/v2/project"),
@@ -74,7 +72,7 @@
 
 			//temp index of element being drawn (project or event) in itemCountPerYear array
 			var arrayIndex = 0; 
-			var itemYposition;
+			var itemYposition = new Array(sortedProjectData.length).fill(0);
 
 			//
 			//plot project data
@@ -102,9 +100,9 @@
 					.each(function(d,i) {
 						arrayIndex = Math.abs(startYear-Number(d['toolset-meta']['project-fields'].year.raw));
 						itemCountPerYear [arrayIndex]++;
-						itemYposition = svgHeight-baseYpos-20*itemCountPerYear[arrayIndex];
+						itemYposition[i] = svgHeight-baseYpos-20*itemCountPerYear[arrayIndex];
 						console.log(itemCountPerYear);
-						console.log(i, itemYposition);
+						console.log(i, itemYposition[i]);
 					})
 					.style("stroke", "#fc3")
 					.style("stroke-width", 10)
@@ -123,8 +121,8 @@
 					// 	return svgHeight-baseYpos-20*itemCountPerYear[arrayIndex];
 
 					// })
-					.attr("y1", function() {console.log("in y1: "+itemYposition); return itemYposition;})
-					.attr("y2", itemYposition);
+					.attr("y1", function(d,i) {console.log("in y1: "+itemYposition[i]); return itemYposition[i];})
+					.attr("y2", itemYposition[i]);
 
 			// attempt to draw 2nd point at "end" time
 			// dataPoints
