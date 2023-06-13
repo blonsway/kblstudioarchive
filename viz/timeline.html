@@ -81,17 +81,17 @@
 				.enter()
 				.append("g");
 
-			dataPoints	
-				.append("circle")
-					.attr("fill","#fc3")
-					.attr("stroke", "none")
-					.attr("cx", function(d) {return timeScaleYears(d['toolset-meta']['project-fields'].year.raw);})
-					//.attr("cy", function(d,i) {return svgHeight-vertDistribScale(i)-baseYpos;})
-					.attr("cy", function(d,i) {
-						itemCountPerYear[i]++;
-						return svgHeight-baseYpos-20*itemCountPerYear[i];
-					})
-					.attr("r", 5);
+			// dataPoints	
+			// 	.append("circle")
+			// 		.attr("fill","#fc3")
+			// 		.attr("stroke", "none")
+			// 		.attr("cx", function(d) {return timeScaleYears(d['toolset-meta']['project-fields'].year.raw);})
+			// 		//.attr("cy", function(d,i) {return svgHeight-vertDistribScale(i)-baseYpos;})
+			// 		.attr("cy", function(d,i) {
+			// 			itemCountPerYear[i]++;
+			// 			return svgHeight-baseYpos-20*itemCountPerYear[i];
+			// 		})
+			// 		.attr("r", 5);
 
 			dataPoints
 				.append("line")
