@@ -138,14 +138,12 @@
 			// 		})
 			// 		.attr("r", 5);
 
-			timelinesvg.selectAll("points")
-				.data(sortedProjectData)
-				.enter()
+			dataPoints
 				.append("a")
 					.attr("xlink:href", function(d){ return d.link })
 				.append("text")
 					.attr("x", function(d) {return timeScaleYears(d['toolset-meta']['project-fields'].year.raw);})
-					.attr("y", function(d,i) {return svgHeight-vertDistribScale(i)-baseYpos+10;})
+					.attr("y", function(d,i) {return svgHeight-baseYpos-20*itemCountPerYear[i]+10;})
 					.attr("dy", ".3em")
 					.text(function(d) {return (d.title.rendered);})
 					//.text(function(d) {return (d['toolset-meta']['project-fields'].year.raw)})
@@ -163,9 +161,7 @@
 						});
 
 
-			timelinesvg.selectAll("image")
-				.data(sortedProjectData)
-				.enter()
+			dataPoints
 				.append("image")
 					.attr("xlink:href", function(d){ return d['toolset-meta']['project-fields']['main-image'].raw })
 					.attr("id", function(d,i) {return "projImage" + i})
