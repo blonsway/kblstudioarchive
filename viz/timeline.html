@@ -48,14 +48,20 @@
 		timelinesvg.append("g")
 			.attr("transform", "translate(0,"+(svgHeight-40)+")")
 			.call(xAxis)
+			.call(d3.zoom().on("zoom", zoomed));
 			.selectAll("text")
 				.style("text-anchor","end")
 				.attr("dx","-1em")
 				.attr("dy","-.5em")
 				.attr("transform","rotate(-90)");
 
-		var baseYpos = 50; //pixels above axis for lowest data point
+		
+		function zoomed(e) {
+			d3.select('svg')
+				.attr('transform', e.transform);
+		}
 
+		var baseYpos = 50; //pixels above axis for lowest data point
 
 		Promise.all([
 		    d3.json("https://archive.kblstudio.com/wp-json/wp/v2/project"),
