@@ -25,7 +25,8 @@
 			.append("svg")
 			.attr("width", svgWidth)
 			.attr("height", svgHeight)
-			.attr("margin", "20px"); 
+			.attr("margin", "20px")
+			.call(d3.zoom().on("zoom", function() {svg.attr("transform", d3.event.transform)})); 
 		
 		// create scale for years based on start year and end year
 		var timeScaleYears = d3.scaleTime()
@@ -48,18 +49,11 @@
 		timelinesvg.append("g")
 			.attr("transform", "translate(0,"+(svgHeight-40)+")")
 			.call(xAxis)
-			.call(d3.zoom().on("zoom", zoomed))
 			.selectAll("text")
 				.style("text-anchor","end")
 				.attr("dx","-1em")
 				.attr("dy","-.5em")
 				.attr("transform","rotate(-90)");
-
-		
-		function zoomed(e) {
-			d3.select('svg')
-				.attr('transform', e.transform);
-		}
 
 		var baseYpos = 50; //pixels above axis for lowest data point
 
