@@ -88,8 +88,6 @@
 					.attr("cx", function(d) {return timeScaleYears(d['toolset-meta']['project-fields'].year.raw);})
 					//.attr("cy", function(d,i) {return svgHeight-vertDistribScale(i)-baseYpos;})
 					.attr("cy", function(d,i) {
-						//var elementYear = d['toolset-meta']['project-fields'].year.raw;
-						//var arrayIndex = endYear-Number(elementYear);
 						itemCountPerYear[i]++;
 						return svgHeight-baseYpos-20*itemCountPerYear[i];
 					})
@@ -108,8 +106,8 @@
 						}
 
 					})
-					.attr("y1", 300)
-					.attr("y2", 300);
+					.attr("y1", function(d,i){return svgHeight-baseYpos-20*itemCountPerYear[i];})
+					.attr("y2", function(d,i){return svgHeight-baseYpos-20*itemCountPerYear[i];});
 
 			// attempt to draw 2nd point at "end" time
 			// dataPoints
