@@ -95,6 +95,9 @@
 
 			dataPoints
 				.append("line")
+					.call(function(d,i) {
+						console.log(d.title.rendered);
+					})
 					.style("stroke", "#fc3")
 					.style("stroke-width", 10)
 					.style("stroke-linecap", "round")
@@ -115,7 +118,7 @@
 					})
 					.attr("y2", function(d,i){
 						var arrayIndex = endYear-Number(d['toolset-meta']['project-fields'].year.raw);
-						return svgHeight-baseYpos-20*(itemCountPerYear[arrayIndex]+1);
+						return svgHeight-baseYpos-20*itemCountPerYear[arrayIndex];
 					});
 
 			// attempt to draw 2nd point at "end" time
