@@ -72,19 +72,21 @@
 
 			//temp index of element being drawn (project or event) in itemCountPerYear array
 			var arrayIndex = 0; 
-			//array to store i-indexable y positions for project items to vertically stack them
-			var itemYposition = new Array(sortedProjectData.length).fill(0);
+
+			//arrays to store i-indexable y positions for project and event elements to vertically stack them
+			var projectYposition = new Array(sortedProjectData.length).fill(0);
+			var eventYposition = new Array(sortedEventData.length).fill(0);
 
 			//
 			//plot project data
 			//
 
-			var dataPoints = timelinesvg.selectAll("points")
+			var projectPoints = timelinesvg.selectAll("points")
 				.data(sortedProjectData)
 				.enter()
 				.append("g");
 
-			// dataPoints	
+			// projectPoints	
 			// 	.append("circle")
 			// 		.attr("fill","#fc3")
 			// 		.attr("stroke", "none")
@@ -96,14 +98,14 @@
 			// 		})
 			// 		.attr("r", 5);
 
-			dataPoints
+			projectPoints
 				.append("line")
 					.each(function(d,i) {
 						arrayIndex = Math.abs(startYear-Number(d['toolset-meta']['project-fields'].year.raw));
 						itemCountPerYear [arrayIndex]++;
-						itemYposition[i] = svgHeight-baseYpos-20*itemCountPerYear[arrayIndex];
+						projectYposition[i] = svgHeight-baseYpos-20*itemCountPerYear[arrayIndex];
 						console.log(itemCountPerYear);
-						console.log(i, itemYposition[i]);
+						console.log(i, projectYposition[i]);
 					})
 					.style("stroke", "#fc3")
 					.style("stroke-width", 10)
@@ -117,11 +119,11 @@
 						}
 
 					})
-					.attr("y1", function(d,i) {return itemYposition[i];})
-					.attr("y2", function(d,i) {return itemYposition[i];});
+					.attr("y1", function(d,i) {return projectYposition[i];})
+					.attr("y2", function(d,i) {return projectYposition[i];});
 
 			// attempt to draw 2nd point at "end" time
-			// dataPoints
+			// projectPoints
 			// 	.append("circle")
 			// 		.attr("fill", "#0f0")
 			// 		.attr("stroke", "none")
@@ -148,12 +150,12 @@
 			// 		})
 			// 		.attr("r", 5);
 
-			dataPoints
+			projectPoints
 				.append("a")
 					.attr("xlink:href", function(d){ return d.link })
 				.append("text")
 					.attr("x", function(d) {return timeScaleYears(d['toolset-meta']['project-fields'].year.raw);})
-					.attr("y", function(d,i) {return itemYposition[i]-10;})
+					.attr("y", function(d,i) {return projectYposition[i]-10;})
 					.attr("dy", ".3em")
 					.text(function(d) {return (d.title.rendered);})
 					//.text(function(d) {return (d['toolset-meta']['project-fields'].year.raw)})
@@ -171,7 +173,7 @@
 						});
 
 
-			dataPoints
+			projectPoints
 				.append("image")
 					.attr("xlink:href", function(d){ return d['toolset-meta']['project-fields']['main-image'].raw })
 					.attr("id", function(d,i) {return "projImage" + i})
@@ -185,30 +187,31 @@
 			//plot event data
 			//
 
-			timelinesvg.selectAll("points")
+			var eventPoints = timelinesvg.selectAll("points")
 				.data(sortedEventData)
 				.enter()
+				.append("g");
+
+			eventPoints
+				.each(function(d,i) {
+					arrayIndex = Math.abs(startYear-Number(d['toolset-meta']['world-event-fields'].year.raw));
+					itemCountPerYear [arrayIndex]++;
+					eventYposition[i] = svgHeight-baseYpos-20*itemCountPerYear[arrayIndex];
+				})
 				.append("circle")
 					.attr("fill","#f22")
 					.attr("stroke", "none")
 					.attr("cx", function(d) {return timeScaleYears(d['toolset-meta']['world-event-fields'].year.raw);})
-					.attr("cy", function(d) {
-						var elementYear = d['toolset-meta']['world-event-fields'].year.raw;
-						var arrayIndex = endYear-Number(elementYear);
-						itemCountPerYear[arrayIndex]++;
-						return svgHeight-baseYpos-20*itemCountPerYear[arrayIndex];
-					})
+					.attr("cy", function(d,i) {return eventYposition[i];})
 					.attr("r", 5);
 
 
-			timelinesvg.selectAll("points")
-				.data(sortedEventData)
-				.enter()
+			eventPoints
 				.append("a")
 					.attr("xlink:href", function(d){ return d.link })
 				.append("text")
 					.attr("x", function(d) {return timeScaleYears(d['toolset-meta']['world-event-fields'].year.raw);})
-					.attr("y", function(d,i) {return svgHeight-vertDistribScale(i)-baseYpos+10;})
+					.attr("y", function(d,i) {return eventYposition[i]-10;})
 					.attr("dy", ".3em")
 					.text(function(d) {return (d.title.rendered);});
 
