@@ -108,9 +108,10 @@
 
 					})
 					.attr("y1", function(d,i){ 
-						itemCountPerYear[i]++; 
+						var arrayIndex = endYear-Number(d['toolset-meta']['project-fields'].year.raw);
+						itemCountPerYear[arrayIndex]++; 
 						console.log("itemCountPerYear: "+itemCountPerYear); 
-						return svgHeight-baseYpos-20*itemCountPerYear[i];
+						return svgHeight-baseYpos-20*itemCountPerYear[arrayIndex];
 					})
 					.attr("y2", function(d,i){return svgHeight-baseYpos-20*itemCountPerYear[i];});
 
