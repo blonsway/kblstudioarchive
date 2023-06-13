@@ -26,7 +26,7 @@
 			.attr("width", svgWidth)
 			.attr("height", svgHeight)
 			.attr("margin", "20px")
-			.call(d3.zoom().on("zoom", function() {svg.attr("transform", d3.event.transform)})); 
+			.call(d3.zoom().on("zoom", function() {timelinesvg.attr("transform", d3.event.transform)})); 
 		
 		// create scale for years based on start year and end year
 		var timeScaleYears = d3.scaleTime()
