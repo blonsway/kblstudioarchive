@@ -73,7 +73,7 @@
 			var sortedEventData = eventData.slice().sort((a,b) => d3.ascending(a['toolset-meta']['world-event-fields'].year.raw, b['toolset-meta']['world-event-fields'].year.raw));		
 
 			//temp index of element being drawn (project or event) in itemCountPerYear array
-			var arrayIndex; 
+			var arrayIndex = 0; 
 
 			//
 			//plot project data
@@ -101,7 +101,7 @@
 					.each(function(d,i) {
 						arrayIndex = endYear-Number(d['toolset-meta']['project-fields'].year.raw);
 						itemCountPerYear [arrayIndex]++;
-						console.log(itemCountPerYear)
+						
 					})
 					.style("stroke", "#fc3")
 					.style("stroke-width", 10)
@@ -116,7 +116,7 @@
 
 					})
 					.attr("y1", function(d,i){ 
-						console.log("arrayIndex in y1: "+arrayIndex);
+						console.log(itemCountPerYear);
 						return svgHeight-baseYpos-20*itemCountPerYear[arrayIndex];
 
 					})
