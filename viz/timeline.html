@@ -72,6 +72,7 @@
 
 			//temp index of element being drawn (project or event) in itemCountPerYear array
 			var arrayIndex = 0; 
+			//array to store i-indexable y positions for project items to vertically stack them
 			var itemYposition = new Array(sortedProjectData.length).fill(0);
 
 			//
@@ -116,11 +117,6 @@
 						}
 
 					})
-					// .attr("y1", function(d){ 
-					// 	console.log(itemCountPerYear);
-					// 	return svgHeight-baseYpos-20*itemCountPerYear[arrayIndex];
-
-					// })
 					.attr("y1", function(d,i) {return itemYposition[i];})
 					.attr("y2", function(d,i) {return itemYposition[i];});
 
@@ -157,7 +153,7 @@
 					.attr("xlink:href", function(d){ return d.link })
 				.append("text")
 					.attr("x", function(d) {return timeScaleYears(d['toolset-meta']['project-fields'].year.raw);})
-					.attr("y", function(d,i) {return svgHeight-baseYpos-20*itemCountPerYear[i]-10;})
+					.attr("y", function(d,i) {return itemYposition[i]-10;})
 					.attr("dy", ".3em")
 					.text(function(d) {return (d.title.rendered);})
 					//.text(function(d) {return (d['toolset-meta']['project-fields'].year.raw)})
