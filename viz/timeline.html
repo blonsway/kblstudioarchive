@@ -109,7 +109,7 @@
 					})
 					.attr("y1", function(d,i){ 
 						itemCountPerYear[i]++; 
-						console.log(itemCountPerYear); 
+						console.log("itemCountPerYear: "+itemCountPerYear); 
 						return svgHeight-baseYpos-20*itemCountPerYear[i];
 					})
 					.attr("y2", function(d,i){return svgHeight-baseYpos-20*itemCountPerYear[i];});
