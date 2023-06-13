@@ -103,6 +103,7 @@
 						arrayIndex = endYear-Number(d['toolset-meta']['project-fields'].year.raw);
 						itemCountPerYear [arrayIndex]++;
 						itemYposition = svgHeight-baseYpos-20*itemCountPerYear[arrayIndex];
+						console.log(itemYposition);
 					})
 					.style("stroke", "#fc3")
 					.style("stroke-width", 10)
