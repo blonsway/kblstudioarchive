@@ -115,7 +115,7 @@
 					})
 					.attr("y2", function(d,i){
 						var arrayIndex = endYear-Number(d['toolset-meta']['project-fields'].year.raw);
-						return svgHeight-baseYpos-20*itemCountPerYear[i];
+						return svgHeight-baseYpos-20*itemCountPerYear[arrayIndex];
 					});
 
 			// attempt to draw 2nd point at "end" time
