@@ -115,8 +115,8 @@
 						if (d['toolset-meta']['project-fields']['end-year'].raw === "") {
 							return timeScaleYears(d['toolset-meta']['project-fields'].year.raw);
 						} else {
-							for (var n=Math.abs(startYear-Number(d['toolset-meta']['project-fields'].year.raw)),
-								 n<=Math.abs(startYear-Number(d['toolset-meta']['project-fields']['end-year'].raw))),
+							for (var n=Math.abs(startYear-Number(d['toolset-meta']['project-fields'].year.raw));
+								 n<=Math.abs(startYear-Number(d['toolset-meta']['project-fields']['end-year'].raw)));
 								 n++) 
 							{
 								itemCountPerYear [n]++;
