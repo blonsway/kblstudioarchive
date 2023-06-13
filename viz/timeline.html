@@ -121,8 +121,8 @@
 					// 	return svgHeight-baseYpos-20*itemCountPerYear[arrayIndex];
 
 					// })
-					.attr("y1", function(d,i) {console.log("in y1: "+itemYposition[i]); return itemYposition[i];})
-					.attr("y2", itemYposition[i]);
+					.attr("y1", function(d,i) {return itemYposition[i];})
+					.attr("y2", function(d,i) {return itemYposition[i];});
 
 			// attempt to draw 2nd point at "end" time
 			// dataPoints
