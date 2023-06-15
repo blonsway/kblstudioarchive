@@ -219,13 +219,17 @@
 				.append("a")
 					.attr("xlink:href", function(d){ return d.link })
 				.append("text")
+					.classed("elementLabel", true)
 					.attr("x", function(d) {return timeScaleYears(d['toolset-meta']['world-event-fields'].year.raw);})
 					.attr("y", function(d,i) {return eventYposition[i]-10;})
 					.attr("dy", ".3em")
 					.text(function(d) {return (d.title.rendered);});
 
 			var labels = timelinesvg.selectAll(".elementLabel")
-				.attr("fill","red");
+				.attr("fill","red")
+				.attr("y", function(d,i){
+
+				});
 
 
 		};
