@@ -228,12 +228,14 @@
 			var labels = timelinesvg.selectAll(".elementLabel")
 				.attr("fill","red")
 				.attr("y", function(d,i){
-
+					return setLabelY(i);
 				});
-
 
 		};
 
+		function setLabelY(index) {
+			return 0;
+		}
 
 
 	</script>
